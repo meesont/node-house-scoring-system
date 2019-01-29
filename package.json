@@ -1,7 +1,7 @@
 {
   "name": "node-house-scoring-system",
   "version": "1.0.0",
-  "description": "House scoring system using node.js",
+  "description": "House scoring system using Node.js",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
