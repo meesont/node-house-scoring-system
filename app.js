@@ -8,17 +8,35 @@ app.set('view engine', 'ejs'); //This sets the view engine for the project, save
 /*
 =====
 ROUTES
+
+Routes are the pathways that the website will be accessed through, for example when accessing this website the routes will be
+/
+/home
+/events
+/events/new
+/leaderboards
+/houses
+/login
+/login/register
+/* - This is a default route which all extensions which are not of the above routes, for example if someone visited /abc it would display 
+an error page
 =====
 */
 //Home route
 app.get('/', function(req, res) {
-    res.render('home');
+    var title = 'Home';
+    res.render('home', {pageTitle: title});
+});
+
+app.get('/home', function(req, res) {
+    res.redirect('/'); //This function just simply redirects the homepage, rather than repating the code to render the 
 });
 
 
 //Default Route
 app.get('/*', function(req, res){
-    res.render('error');
+    var title = 'Error';
+    res.render('error', {pageTitle: title});
 });
 
 /*
@@ -30,4 +48,4 @@ LISTENER
 app.listen(port, ip, function(){
     console.log('Server Initalised');
     console.log(ip + ':' + port);
-})
+});
