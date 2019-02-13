@@ -29,9 +29,18 @@ app.get('/', function(req, res) {
 });
 
 app.get('/home', function(req, res) {
-    res.redirect('/'); //This function just simply redirects the homepage, rather than repating the code to render the 
+    res.redirect('/'); //This function just simply redirects the homepage, rather than repating the code to render the homepage
 });
 
+app.get('/events', function(req, res) {
+    var title = 'Events';
+    res.render('events', {pageTitle: title});
+});
+
+app.get('/events/new', function(req, res) {
+    var title = 'New Event';
+    res.render('newEvent', {pageTitle: title});
+});
 
 //Default Route
 app.get('/*', function(req, res){
