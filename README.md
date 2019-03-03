@@ -11,6 +11,7 @@ Developed and deployed for RGS Worcester
   * Passport.js
   * _ js
   * Express.js
+  * Nodemon
 
 
 
