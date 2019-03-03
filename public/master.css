@@ -1,0 +1,19 @@
+body {
+    padding-top: 70px;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.blue, .orange, .red {
+    color: black;
+}

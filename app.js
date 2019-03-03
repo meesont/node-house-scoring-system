@@ -25,7 +25,8 @@ an error page
 //Home route
 app.get('/', function(req, res) {
     var title = 'Home';
-    res.render('home', {pageTitle: title});
+    res.render('home', {pageTitle: title}); //This tells express to render the home.ejs page, and we supply it with an object called title which is referenced within the ejs
+    //file as pageTitle
 });
 
 app.get('/home', function(req, res) {
@@ -51,6 +52,12 @@ app.get('/*', function(req, res){
 /*
 =====
 LISTENER
+=====
+*/
+
+/*
+=====
+AUTO CONTENT UPDATER
 =====
 */
 
