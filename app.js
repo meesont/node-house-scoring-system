@@ -55,12 +55,6 @@ LISTENER
 =====
 */
 
-/*
-=====
-AUTO CONTENT UPDATER
-=====
-*/
-
 app.listen(port, ip, function(){
     console.log('Server Initalised');
     console.log(ip + ':' + port);

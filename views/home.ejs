@@ -2,22 +2,37 @@
 <% include partials/navbar %>
 
 <div class='container-fluid'>
-    <header class='jumbotron'>
+    <div class='jumbotron'>
         <h1>Homepage</h1>
-    </header>
+        <p class='lead'>
+            Welcome to the RGSW House Homepage
+        </p>
+        <hr class='my-3'>
+        <p>
+            Curabitur ut pulvinar libero. Duis vel tempor mi, eget commodo eros. Morbi sollicitudin id nulla ac egestas. Aenean luctus sit amet justo eu elementum. Vestibulum ut lectus iaculis, ullamcorper neque pretium, pellentesque nulla. Nulla sed posuere diam. Integer sodales sem feugiat, scelerisque mi id, imperdiet ligula. Vivamus venenatis, sem condimentum pulvinar hendrerit, mi justo porta est, in auctor purus risus ut metus.
+        </p>
+    </div>
+
+    <main class='container-fluid'>
+        <div class='row'>
+            
+            <div class='col-md-3 col-lg-3 orange'> <!-- This will contain the leaderboard feed -->
+                <h3>Leaderboards</h3>
+                <p>This will contain the current leaderboard status</p>
+                <p>In format: [ranking] - [house] ([score])</p>
+            </div>
+            
+            <div class='col-md-6 col-lg-6 red'> <!-- Main content -->
+                <h3>Houses information</h3>
+                <p>This collum will contain information about the house system in general</p>
+            </div>
+            
+            <div class='col-md-3 col-lg-3 orange'>
+                <h3>Upcoming Events</h3>
+                <p>This will contain the upcoming events with there dates</p>
+                <p>In format: [event] - [date]</p>
+            </div>
+        </div>
+    </main>
 </div>
-
-<div class='row'>
-    <div class='col orange'> <!-- This will contain the leaderboard feed -->
-        COLLUM 1
-    </div>
-    <div class='col-6 red'> <!-- Main content -->
-        COLLUM 2
-    </div>
-    <div class='col orange'>
-        COLLUM 3
-    </div>
-</div>
-
-
 <% include partials/footer %>
