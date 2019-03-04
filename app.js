@@ -49,8 +49,12 @@ app.get('/events', function(req, res) {
 
 app.post('/events', function(req, res) {
    
-   var newEvent = 
-    
+   var newEvent = {name: req.body.name, date: req.body.date, maxPoints: req.body.maxPoints};
+   
+   events.push(newEvent);
+   
+   res.redirect('/events');
+   
 });
 
 app.get('/events/new', function(req, res) {
