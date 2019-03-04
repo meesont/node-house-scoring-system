@@ -22,6 +22,11 @@ Routes are the pathways that the website will be accessed through, for example w
 an error page
 =====
 */
+
+var events = [
+{name: 'Football', date: '10/10/2018', maxPoints: 10},
+{name: 'Rugby', date: '20/02/2019', maxPoints: 40}
+];
 //Home route
 app.get('/', function(req, res) {
     var title = 'Home';
@@ -33,9 +38,19 @@ app.get('/home', function(req, res) {
     res.redirect('/'); //This function just simply redirects the homepage, rather than repating the code to render the homepage
 });
 
+
+
+
+//EVENT PAGE MANAGEMENT
 app.get('/events', function(req, res) {
     var title = 'Events';
     res.render('events', {pageTitle: title});
+});
+
+app.post('/events', function(req, res) {
+   
+   var newEvent = 
+    
 });
 
 app.get('/events/new', function(req, res) {
@@ -43,7 +58,10 @@ app.get('/events/new', function(req, res) {
     res.render('newEvent', {pageTitle: title});
 });
 
-//Default Route
+
+
+
+//FALLBACK ROUTE
 app.get('/*', function(req, res){
     var title = 'Error';
     res.render('error', {pageTitle: title});

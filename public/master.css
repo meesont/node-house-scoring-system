@@ -19,9 +19,13 @@ body {
     padding: 20px 0;
 }
 
-.footer {
+footer {
     position: fixed;
-    height: 100px;
+    /*height: 100px;*/
     bottom: 0;
     width: 100%;
+}
+
+#newEventBtn {
+    position: right;
 }
