@@ -40,3 +40,27 @@
   height: 100%;
   border-radius: 10px;
 }
+
+.btn-rgsgreen {
+  background-color: #275c48 !important;
+  border-color: #275c48 !important;
+}
+
+.btn-rgsgreen:focus {
+  background: hsl(164, 96%, 12%) !important; /*Important needed to overwrite the button style from bootstrap's own css file*/
+  border-color: hsl(164, 96%, 12%) !important; /* HSL Stands for hue saturation lightness, used to make colours
+  as an alterantive to hexadecimil, RGB/RGBA and standard inbuilt colours */
+  color: #fff;
+}
+
+.btn-rgsgreen:hover {
+  background: #014a37;
+  border-color: #014a37;
+  color: #fff;
+}
+
+.btn-rgsgreen:active { /* Handles the colours when the button is clicked by the user */
+  background: hsl(164, 96%, 12%) !important;
+  border-color: hsl(164, 96%, 12%) !important;
+  color: #fff;
+}

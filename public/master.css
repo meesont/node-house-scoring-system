@@ -2,18 +2,26 @@ body {
     padding-top: 70px;
 }
 
-.orange {
-    background-color: orange;
-}
-
-.red {
+.mainFrame {
+    color: white;
     background-color: red;
 }
 
-.blue {
-    background-color: blue;
+.sideFrame {
+    background-color: orange;
+    color: white;
+    /*border-radius: 10px;*/
+    height: 300px;
 }
 
-.blue, .orange, .red {
-    color: black;
+.mainFrame, .sideFrame {
+    display: block;
+    padding: 20px 0;
+}
+
+.footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
 }
