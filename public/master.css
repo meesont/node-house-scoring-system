@@ -29,3 +29,7 @@ footer {
 #newEventBtn {
     /*TODO - add the rest of the new event btn lineup */
 }
+
+.paddingFix {
+    padding-top: 10px;
+}
