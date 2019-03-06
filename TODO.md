@@ -12,4 +12,4 @@
 * Fix footer styling
 * Add algorithm to calculate scoreboard
     * Discuss big O notation for this algorithm
-* 
+* Fix styling on the date input label in events.ejs
