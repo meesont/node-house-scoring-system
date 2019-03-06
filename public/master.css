@@ -27,7 +27,13 @@ footer {
 }
 
 #newEventBtn {
-    /*TODO - add the rest of the new event btn lineup */
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+}
+
+#modalActivate {
+    border-radius: 10px !important;
 }
 
 .paddingFix {
