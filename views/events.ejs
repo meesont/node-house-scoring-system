@@ -28,6 +28,32 @@ aria-hidden='true'>
             </div>
             
             <div class='modal-body mx-3'>
+                <div class='md-form mb-5'>
+                    <input type='text' id='evtName' class='form-control'>
+                    <label for='evtName'>New Event Name</label>
+                </div>
+                
+                <div class='md-form mb-5'>
+                    <input type='date' id='evtDate' class='form-control'>
+                    <!--<label for='evtDate'>Event Date</label>-->
+                </div>
+                
+                <div class='md-form mb-5'>
+                    <input type="number" id="evtNumPlayers" class="form-control">
+                    <label for="evtNumPlayers">Event Maximum Players</label>
+                </div>
+                
+                <div class='md-form mb-5'>
+                    <input type="number" id="evtMaxPoints" class="form-control">
+                    <label for="evtMaxPoints">Event Maximum Available Points</label>
+                </div>
+                
+                <div class='md-form mb-5'>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                        <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
+                    </div>
+                </div>
             </div>
             
             <div class='modal-footer'>
@@ -38,4 +64,5 @@ aria-hidden='true'>
     </div>
     
 </div>
+
 <% include partials/footer %>
