@@ -3,12 +3,39 @@
 
 
 <div class='container-fluid paddingFix'>
-    <h2 class='h2-responsive'>Upcoming Events</h1>
     
-    <a id='newEventBtn' class='btn btn-lg btn-rgsgreen' href='/events/new'>Add new event</a>
-    
-    
+    <h1 class='h1-responsive'>Events</h1>
+
+    <div id='newEventBtn'>
+        <button id="modalActivate" type="button" class="btn btn-lg btn-rgsgreen" data-toggle="modal"
+        data-target="#newEventModal">
+            Add new event
+        </button>
+    </div>
+
 </div>
 
-
+<div class='modal fade right' id='newEventModal' tabindex='-1' role='dialog' aria-labeledby='modalTitle'
+aria-hidden='true'>
+    
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='modalTitle'>Add new event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            
+            <div class='modal-body mx-3'>
+            </div>
+            
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
+                <button type='button' class='btn btn-success'>Add new event</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
 <% include partials/footer %>
