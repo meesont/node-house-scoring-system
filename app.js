@@ -1,9 +1,12 @@
 var express = require("express"); //This defines the requirement for express
 var app = express(); //This initilises the express app
+var bodyParser = require("body-parser");
 var port = process.env.PORT, ip = process.env.IP; //This defines the port and IP, this is only used for C9
 
 app.use(express.static('public')); //This sets the path for where express can find the CSS and JS files for the frontend
 app.set('view engine', 'ejs'); //This sets the view engine for the project, saves me time when writing the res.render methods
+app.use(bodyParser.urlencoded({extended: true}));
+
 
 /*
 =====
@@ -23,10 +26,7 @@ an error page
 =====
 */
 
-var events = [
-{name: 'Football', date: '10/10/2018', maxPoints: 10},
-{name: 'Rugby', date: '20/02/2019', maxPoints: 40}
-];
+
 //Home route
 app.get('/', function(req, res) {
     var title = 'Home';
@@ -42,18 +42,34 @@ app.get('/home', function(req, res) {
 
 
 //EVENT PAGE MANAGEMENT
+
+var events = [
+{name: 'Football', date: '10/10/2018', maxPoints: 10},
+{name: 'Rugby', date: '20/02/2019', maxPoints: 40},
+{name: 'Cricket', date: '19/05/2018', maxPoints: 90},
+{name: 'Example', date: '00/00/0000', maxPoints: 10},
+{name: 'Example2', date: '01/01/0001', maxPoints: 11},
+{name: 'Example3', date: '02/02/0002', maxPoints: 12},
+{name: 'Example4', date: '03/03/0003', maxPoints: 13},
+{name: 'Example5', date: '04/04/0004', maxPoints: 14},
+{name: 'Example6', date: '05/05/0005', maxPoints: 15},
+{name: 'Example7', date: '06/06/0006', maxPoints: 16},
+];
+
 app.get('/events', function(req, res) {
+    
+
     var title = 'Events';
-    res.render('events', {pageTitle: title});
+    res.render('events', {pageTitle: title, events: events});
 });
 
 app.post('/events', function(req, res) {
    
-   var newEvent = {name: req.body.name, date: req.body.date, maxPoints: req.body.maxPoints};
+  var newEvent = {name: req.body.name, date: req.body.date, maxPoints: req.body.maxPoints};
    
-   events.push(newEvent);
+  events.push(newEvent);
    
-   res.redirect('/events');
+  res.redirect('/events');
    
 });
 

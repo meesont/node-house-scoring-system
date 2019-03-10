@@ -6,14 +6,37 @@
     
     <h1 class='h1-responsive'>Events</h1>
 
+    <div class='row'>
+        
+        <% events.forEach(function(event){ %>
+    
+        <div class='col mb-4 d-flex align-items-stretch'>
+            <div class='card mb-4'>
+                <div class='card-body text-center'>
+                    
+                    <h4 clas='card-title'><%= event.name %></h4>
+                    
+                    <p class='card-text'>Date - <%= event.date %></p>
+                    <p class='card-text'>Maximum Points - <%= event.maxPoints %></p>
+                </div>
+
+            </div>
+        </div>
+
+        
+        <% }); %>
+    </div>
+
+    
+    
     <div id='newEventBtn'>
-        <button id="modalActivate" type="button" class="btn btn-lg btn-rgsgreen" data-toggle="modal"
-        data-target="#newEventModal">
-            Add new event
-        </button>
+        <button id="modalActivate" type="button" class="btn btn-lg btn-rgsgreen" data-toggle="modal"data-target="#newEventModal">Add new event</button>
     </div>
 
 </div>
+
+<!--new event modal-->
+
 
 <div class='modal fade right' id='newEventModal' tabindex='-1' role='dialog' aria-labeledby='modalTitle'
 aria-hidden='true'>
@@ -48,15 +71,19 @@ aria-hidden='true'>
                     <label for="evtMaxPoints">Event Maximum Available Points</label>
                 </div>
                 
-                <div class='md-form mb-5'>
-                    <div class="custom-control custom-radio">
+                <div class='md-form'>
+                    <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" class="form-control custom-control-input" id="male" name="evtGender">
                         <label class="custom-control-label" for="male">Male</label>
                     </div>
                     
-                    <div class='custom-control custom-radio'>
+                    <div class='custom-control custom-radio custom-control-inline'>
                         <input type='radio' class='form-control custom-control-input' id='female' name='evtGender'>
                         <label class='custom-control-label' for='female'>Female</label>
+                    </div>
+                    <div class='custom-control custom-radio custom-control-inline'>
+                        <input type='radio' class='form-control custom-control-input' id='mixed' name='evtGender'>
+                        <label class='custom-control-label' for='mixed'>Mixed</label>
                     </div>
                 </div>
             </div>
