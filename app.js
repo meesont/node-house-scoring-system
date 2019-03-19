@@ -48,15 +48,15 @@ var events = [
 {name: 'Cricket', date: '19/05/2018', maxPoints: 90},
 {name: 'Example', date: '00/00/0000', maxPoints: 10},
 {name: 'Example2', date: '01/01/0001', maxPoints: 11},
-{name: 'Example3', date: '02/02/0002', maxPoints: 12},
-{name: 'Example4', date: '03/03/0003', maxPoints: 13},
-{name: 'Example5', date: '04/04/0004', maxPoints: 14},
-{name: 'Example6', date: '05/05/0005', maxPoints: 15},
-{name: 'Example7', date: '06/06/0006', maxPoints: 16},
+{name: 'Example3', date: '02/02/0002', maxPoints: 12}
 ];
 
+// var events = [
+//     {name: 'Football'},
+//     {name: 'Rugby'}
+// ];
+
 app.get('/events', function(req, res) {
-    
 
     var title = 'Events';
     res.render('events', {pageTitle: title, events: events});
@@ -69,15 +69,15 @@ app.post('/events', function(req, res) {
    
   events.push(newEvent);
   
-  console.log('new event added to array: ' + newEvent); 
+//   console.log('new event added to array: ' + newEvent.name + newEvent.date + newEvent.maxPoints); 
   res.redirect('/events');
    
 });
 
-app.get('/events/new', function(req, res) {
-    var title = 'New Event';
-    res.render('newEvent', {pageTitle: title});
-});
+// app.get('/events/new', function(req, res) {
+//     var title = 'New Event';
+//     res.render('newEvent', {pageTitle: title});
+// });
 
 
 
