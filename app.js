@@ -40,7 +40,6 @@ app.get('/home', function(req, res) {
 
 
 
-
 //EVENT PAGE MANAGEMENT
 
 var events = [
@@ -66,9 +65,11 @@ app.get('/events', function(req, res) {
 app.post('/events', function(req, res) {
    
   var newEvent = {name: req.body.name, date: req.body.date, maxPoints: req.body.maxPoints};
+  
    
   events.push(newEvent);
-   
+  
+  console.log('new event added to array: ' + newEvent); 
   res.redirect('/events');
    
 });
