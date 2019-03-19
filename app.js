@@ -51,10 +51,6 @@ var events = [
 {name: 'Example3', date: '02/02/0002', maxPoints: 12}
 ];
 
-// var events = [
-//     {name: 'Football'},
-//     {name: 'Rugby'}
-// ];
 
 app.get('/events', function(req, res) {
 
@@ -73,14 +69,6 @@ app.post('/events', function(req, res) {
   res.redirect('/events');
    
 });
-
-// app.get('/events/new', function(req, res) {
-//     var title = 'New Event';
-//     res.render('newEvent', {pageTitle: title});
-// });
-
-
-
 
 //FALLBACK ROUTE
 app.get('/*', function(req, res){
