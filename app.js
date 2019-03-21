@@ -3,30 +3,15 @@ var app = express(); //This initilises the express app
 var bodyParser = require("body-parser");
 var port = process.env.PORT, ip = process.env.IP; //This defines the port and IP, this is only used for C9
 
+//DATABASE STUFF
+
 var mongoose = require("mongoose");
+mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true});
 
 app.use(express.static('public')); //This sets the path for where express can find the CSS and JS files for the frontend
 app.set('view engine', 'ejs'); //This sets the view engine for the project, saves me time when writing the res.render methods
 app.use(bodyParser.urlencoded({extended: true}));
 
-
-/*
-=====
-ROUTES
-
-Routes are the pathways that the website will be accessed through, for example when accessing this website the routes will be
-/
-/home
-/events
-/events/new
-/leaderboards
-/houses
-/login
-/login/register
-/* - This is a default route which all extensions which are not of the above routes, for example if someone visited /abc it would display 
-an error page
-=====
-*/
 
 
 //Home route

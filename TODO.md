@@ -1,7 +1,7 @@
 # TODO
 
 * Setup events post route
-* Create form for new events
+* Create form for new events ** Done **
 * Move events from an array across to a database
     * MongoDB
 * Fix styling for the events rendering
