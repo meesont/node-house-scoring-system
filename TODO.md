@@ -13,3 +13,12 @@
 * Add algorithm to calculate scoreboard
     * Discuss big O notation for this algorithm
 * Fix styling on the date input label in events.ejs
+* Routes
+    * /home
+    * /events
+    * /leaderboards
+    * /houses
+    * /login
+    * /login/register or /register
+    * Default route
+
