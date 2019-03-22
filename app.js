@@ -1,16 +1,21 @@
-var express = require("express"); //This defines the requirement for express
-var app = express(); //This initilises the express app
-var bodyParser = require("body-parser");
-var port = process.env.PORT, ip = process.env.IP; //This defines the port and IP, this is only used for C9
-
-//DATABASE STUFF
-
-var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true});
+var express = require("express"), //This defines the requirement for express
+app = express(), //This initilises the express app
+bodyParser = require("body-parser"),
+mongoose = require("mongoose");
 
 app.use(express.static('public')); //This sets the path for where express can find the CSS and JS files for the frontend
 app.set('view engine', 'ejs'); //This sets the view engine for the project, saves me time when writing the res.render methods
 app.use(bodyParser.urlencoded({extended: true}));
+
+//DATABASE STUFF
+
+mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true});
+
+var eventsSchema = mongoose.Schema({
+   name: String,
+   maxPoints: Number,
+   date: Date
+});
 
 
 
@@ -68,6 +73,8 @@ app.get('/*', function(req, res){
 LISTENER
 =====
 */
+
+var port = process.env.PORT, ip = process.env.IP; //This defines the port and IP, this is only used for C9
 
 app.listen(port, ip, function(){
     console.log('Server Initalised');
