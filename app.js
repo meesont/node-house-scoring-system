@@ -11,11 +11,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true});
 
-var eventsSchema = mongoose.Schema({
+var eventsSchema = new mongoose.Schema({
    name: String,
    maxPoints: Number,
+   maxPlayers: Number,
    date: Date
 });
+
 
 var Event = mongoose.model('Event', eventsSchema);
 
@@ -54,6 +56,7 @@ app.post('/events', function(req, res) {
   Event.create({
       name: req.body.name,
       date: req.body.date,
+      maxPlayers: req.body.maxPlayers,
       maxPoints: req.body.maxPoints
   }, function (err, newEvent) {
       if(err){
