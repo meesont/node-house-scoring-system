@@ -6,11 +6,11 @@
     
     <h1 class='h1-responsive'>Events</h1>
 
-    <div class='row'>
+    <div class='row' style='display: flex; flex-wrap: wrap;'>
         
         <% events.forEach(function(event){ %>
-    
-        <div class='col mb-4 d-flex align-items-stretch'>
+
+        <div class='col-md-3 col-sm-6'>
             <div class='card mb-4'>
                 <div class='card-body text-center'>
                     
@@ -58,7 +58,7 @@ aria-hidden='true'>
                     </div>
                     
                     <div class='md-form mb-5'>
-                        <input type='text' id='evtDate' name='date' class='form-control' placeholder='DD/MM/YYYY'>
+                        <input type='date' id='evtDate' name='date' class='form-control' placeholder='DD/MM/YYYY'>
                         <label for='evtDate'>Event Date</label>
                     </div>
                     
@@ -68,7 +68,7 @@ aria-hidden='true'>
                     </div>
                     
                     <div class='md-form mb-5'>
-                        <input type="number" id="evtMaxPoints" name='maxPoints'class="form-control">
+                        <input type="number" id="evtMaxPoints" name='maxPoints' class="form-control">
                         <label for="evtMaxPoints">Event Maximum Available Points</label>
                     </div>
                     

@@ -17,7 +17,7 @@ var eventsSchema = mongoose.Schema({
    date: Date
 });
 
-
+var Event = mongoose.model('Event', eventsSchema);
 
 //Home route
 app.get('/', function(req, res) {
@@ -31,34 +31,38 @@ app.get('/home', function(req, res) {
 });
 
 
-
 //EVENT PAGE MANAGEMENT
-
-var events = [
-{name: 'Football', date: '10/10/2018', maxPoints: 10},
-{name: 'Rugby', date: '20/02/2019', maxPoints: 40},
-{name: 'Cricket', date: '19/05/2018', maxPoints: 90},
-{name: 'Example', date: '00/00/0000', maxPoints: 10},
-{name: 'Example2', date: '01/01/0001', maxPoints: 11},
-{name: 'Example3', date: '02/02/0002', maxPoints: 12}
-];
-
 
 app.get('/events', function(req, res) {
 
     var title = 'Events';
-    res.render('events', {pageTitle: title, events: events});
+
+    Event.find({}, function(err, events) {
+       if(err){
+           console.log('Error encountered');
+           console.log(err);
+       } else {
+           res.render('events', {pageTitle: title, events: events});
+       }
+    });
+    
 });
 
 app.post('/events', function(req, res) {
-   
-  var newEvent = {name: req.body.name, date: req.body.date, maxPoints: req.body.maxPoints};
+
   
-   
-  events.push(newEvent);
-  
-//   console.log('new event added to array: ' + newEvent.name + newEvent.date + newEvent.maxPoints); 
-  res.redirect('/events');
+  Event.create({
+      name: req.body.name,
+      date: req.body.date,
+      maxPoints: req.body.maxPoints
+  }, function (err, newEvent) {
+      if(err){
+          console.log('Error encountered');
+          console.log(err);
+      } else {
+          res.redirect('/events');
+      }
+  });
    
 });
 
