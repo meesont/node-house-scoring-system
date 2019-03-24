@@ -43,6 +43,7 @@ app.get('/events', function(req, res) {
        if(err){
            console.log('Error encountered');
            console.log(err);
+           res.redirect('/error');
        } else {
            res.render('events', {pageTitle: title, events: events});
        }
@@ -52,7 +53,6 @@ app.get('/events', function(req, res) {
 
 app.post('/events', function(req, res) {
 
-  
   Event.create({
       name: req.body.name,
       date: req.body.date,
@@ -62,6 +62,7 @@ app.post('/events', function(req, res) {
       if(err){
           console.log('Error encountered');
           console.log(err);
+          res.redirect('/error');
       } else {
           res.redirect('/events');
       }
@@ -69,7 +70,25 @@ app.post('/events', function(req, res) {
    
 });
 
-//FALLBACK ROUTE
+app.get('/events/:id', function(req, res) {
+    
+    Event.findById(req.params.id, function(err, event) {
+        if(err) {
+            console.log(err);
+            res.redirect('/error');
+        } else {
+            var name = event.name;
+            res.render('eventShow', {pageTitle: name, event: event});
+        }
+    });
+});
+
+//FALLBACK ROUTE / ERROR ROUTE
+
+app.get('/error', function(req, res) {
+    res.render('error', {pageTitle: 'Error'});
+});
+
 app.get('/*', function(req, res){
     var title = 'Error';
     res.render('error', {pageTitle: title});
