@@ -18,7 +18,7 @@ var House = require("./models/house");
 //Home route
 app.get('/', function(req, res) {
     var title = 'Home';
-    res.render('home', {pageTitle: title}); //This tells express to render the home.ejs page, and we supply it with an object called title which is referenced within the ejs
+    res.render('landing', {pageTitle: title}); //This tells express to render the home.ejs page, and we supply it with an object called title which is referenced within the ejs
     //file as pageTitle
 });
 
@@ -39,7 +39,7 @@ app.get('/events', function(req, res) {
            console.log(err);
            res.redirect('/error');
        } else {
-           res.render('events', {pageTitle: title, events: events});
+           res.render('events/index', {pageTitle: title, events: events});
        }
     });
     
@@ -72,7 +72,7 @@ app.get('/events/:id', function(req, res) {
             res.redirect('/error');
         } else {
             var name = event.name;
-            res.render('eventShow', {pageTitle: name, event: event});
+            res.render('events/show', {pageTitle: name, event: event});
         }
     });
 });

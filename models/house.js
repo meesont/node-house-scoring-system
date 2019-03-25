@@ -8,14 +8,14 @@ there are only 4 houese
 
 var houseSchema = new mongoose.Schema({
     name: String,
+    houseMaster: String,
     events: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Event'
         }
     ],
-    houseMaster: String,
-    members:[
+    members: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Member'
