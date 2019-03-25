@@ -15,7 +15,7 @@
 * Fix styling on the date input label in events.ejs
 * Routes
     * /home
-    * /events
+    * /events **DONE**
     * /leaderboards
     * /houses
     * /login
@@ -25,7 +25,7 @@
 * Move routes into seperate files, then import into app.js
 * Fix naming to conform with RESTful routing
 * Move mongoose schema to seperate models folder **DONE**
-* Databases
-    * Events
+* Collection modeling 
+    * Events **DONE**
     * Houses
-    * ?Users?
+    * Users
