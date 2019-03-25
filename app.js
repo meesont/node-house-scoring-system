@@ -11,15 +11,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true});
 
-var eventsSchema = new mongoose.Schema({
-   name: String,
-   maxPoints: Number,
-   maxPlayers: Number,
-   date: Date
-});
+var Event = require("./models/event");
+var House = require("./models/house");
 
-
-var Event = mongoose.model('Event', eventsSchema);
 
 //Home route
 app.get('/', function(req, res) {
