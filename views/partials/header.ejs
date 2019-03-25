@@ -29,3 +29,43 @@
         
     </head>
     <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-rgsgreen"> <!-- Create a navbar with a custom RGSW green shade background -->
+            <!--Header -->
+            <a href="/" class="navbar-brand">RGSW</a> <!-- Create a brand title for the navbar TODO: add the rgsw crest -->
+            <!--Hamburger -->
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navCollapseItems" aria-controls="navCollapseItems"
+            aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            
+            <div class="navbar-collapse collapse" id="navCollapseItems">
+            <!--TODO: Add navbar items -->
+                <ul class="navbar-nav mr-auto"> <!-- Mr-Auto aligns the items to right of the navbar -->
+                    <li class="<%= pageTitle == 'Home' ? 'navbar-item active' : 'navbar-item' %>">
+                        <a href="/home" class="nav-link">Home</a> 
+                    </li>
+                    <li class="<%= pageTitle == 'Leaderboards' ? 'navbar-item active' : 'navbar-item' %>">
+                        <a href="/leaderboards" class="nav-link">Leaderboard</a>
+                    </li>
+                    <li class="<%= pageTitle == 'Houses' ? 'navbar-item active' : 'navbar-item' %>">
+                        <a href="/houses" class="nav-link">Houses</a>
+                    </li>
+                    <li class="<%= pageTitle == 'Events' ? 'navbar-item active' : 'navbar-item' %>">
+                        <a href="/events" class="nav-link">Events</a>
+                    </li>
+                </ul>
+                
+                <!--Login and Register forms -->
+                <ul class="navbar-nav">
+                    <li class="<%= pageTitle == 'Login' ? 'navbar-item active' : 'navbar-item' %>">
+                        <a href="/login" class="nav-link"><i class="fas fa-user"></i> Login</a>
+                    </li>
+                    
+                    <li class="<%= pageTitle == 'Register' ? 'navbar-item active' : 'navbar-item' %>">
+                        <a href="/register" class="nav-link" id='registerBtn'><i class="fas fa-user-plus"></i> Signup</a>
+                    </li>
+                </ul>
+            </div>
+        
+        </nav>
