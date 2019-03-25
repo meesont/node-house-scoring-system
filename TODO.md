@@ -12,20 +12,30 @@
 * Fix footer styling **DONE**
 * Add algorithm to calculate scoreboard
     * Discuss big O notation for this algorithm
+    * Fairly simple alg, use basic sort alg w lowest time complexity
 * Fix styling on the date input label in events.ejs
 * Routes
-    * /home
+    * /home **DONE**
     * /events **DONE**
     * /leaderboards
     * /houses
     * /login
     * /login/register or /register
     * Default route
-* Organise files into folder for easier viewing
+* Organise files into folder for easier viewing **IN PROGRESS**
 * Move routes into seperate files, then import into app.js
-* Fix naming to conform with RESTful routing
+* Fix naming to conform with RESTful routing **DONE**
 * Move mongoose schema to seperate models folder **DONE**
 * Collection modeling 
     * Events **DONE**
     * Houses
     * Users
+
+### RESTFUL ROUTES
+
+name | url | verb | desc.
+--- | --- | --- | ---
+INDEX | /events | GET | Display a list of all events
+NEW | /events/new | GET | Displays form to make new event *not used*
+CREATE | /events | POST | Add new event to db
+SHOW | /event/:id | GET | Shows info about specific event
