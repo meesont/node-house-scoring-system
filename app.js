@@ -3,7 +3,7 @@
 // ========================
 
 
-var express = require("express"), //This defines the requirement for express
+const express = require("express"), //This defines the requirement for express
     app = express(), //This initilises the express app
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
@@ -12,7 +12,6 @@ var express = require("express"), //This defines the requirement for express
     User = require("./models/user"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
-    passportLocalMongoose = require("passport-local-mongoose"),
     seedDB = require("./seeds");
 
 
@@ -108,7 +107,22 @@ app.get('/events/:id', function(req, res) {
     });
 });
 
+// ========================
+// LOGIN/REGISTER ROUTE
+// ========================
+
+app.get('/login', function(req, res) {
+    res.render('login', {pageTitle: 'Login'});
+});
+
+app.get('/register', function(req, res) {
+   res.render('register', {pageTitle: 'Register'});
+});
+
+
+// ========================
 //FALLBACK ROUTE / ERROR ROUTE
+// ========================
 
 app.get('/error', function(req, res) {
     res.render('error', {pageTitle: 'Error'});
@@ -118,6 +132,20 @@ app.get('/*', function(req, res){
     var title = 'Error';
     res.render('error', {pageTitle: title});
 });
+
+
+
+// ========================
+// ========================
+// MIDDLEWARE
+// ========================
+
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login');
+}
 
 
 // ========================
