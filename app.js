@@ -9,6 +9,10 @@ var express = require("express"), //This defines the requirement for express
     mongoose = require("mongoose"),
     Event = require("./models/event"),
     House = require("./models/house"),
+    User = require("./models/user"),
+    passport = require("passport"),
+    LocalStrategy = require("passport-local"),
+    passportLocalMongoose = require("passport-local-mongoose"),
     seedDB = require("./seeds");
 
 
@@ -21,6 +25,23 @@ app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true});
 
 // seedDB();
+
+//AUTHENTICATION STUFF
+
+app.use(require("express-session")({
+    secret: 'this is a completely random string that is used by passport!',
+    resave: false,
+    saveUninitialized: false
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+passport.use(new LocalStrategy(User.authenticate()));
 
 
 // ========================
