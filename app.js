@@ -12,7 +12,7 @@ var express = require("express"), //This defines the requirement for express
     seedDB = require("./seeds");
 
 
-app.use(express.static('public')); //This sets the path for where express can find the CSS and JS files for the frontend
+app.use(express.static(__dirname + '/public')); //This sets the path for where express can find the CSS and JS files for the frontend
 app.set('view engine', 'ejs'); //This sets the view engine for the project, saves me time when writing the res.render methods
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true});
 
-seedDB();
+// seedDB();
 
 
 // ========================
@@ -60,20 +60,17 @@ app.get('/events', function(req, res) {
 
 app.post('/events', function(req, res) {
 
-  Event.create({
-      name: req.body.name,
-      date: req.body.date,
-      maxPlayers: req.body.maxPlayers,
-      maxPoints: req.body.maxPoints
-  }, function (err, newEvent) {
-      if(err){
-          console.log('Error encountered');
-          console.log(err);
-          res.redirect('/error');
-      } else {
-          res.redirect('/events');
-      }
-  });
+    //req.body.event used as entire form is done in event[value] style
+
+    Event.create(req.body.event, function (err, newEvent) {
+        if(err){
+            console.log('Error encountered');
+            console.log(err);
+            res.redirect('/error');
+        } else {
+            res.redirect('/events');
+        }
+    });
    
 });
 

@@ -2,15 +2,15 @@ var mongoose = require("mongoose");
 
 var eventsSchema = new mongoose.Schema({
    name: String,
-   maxPoints: Number,
-   maxPlayers: Number,
+   firstPoints: Number,
+   secondPoints: Number,
+   thirdPoints: Number,
+   fourthPoints: Number,
    date: Date,
-   members: [
-      {
-         type: mongoose.Schema.Types.ObjectId,
-         ref: 'Member'
-      }
-   ]
+   winner: String,
+   runnerUp: String,
+   third: String,
+   fourth: String
 });
 
 
