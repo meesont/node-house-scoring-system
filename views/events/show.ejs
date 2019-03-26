@@ -1,17 +1,62 @@
 <% include ../partials/header %>
 
-<h1><%= event.name %></h1>
+<div class='container-fluid' style='padding: 20px;'>
+    
+    <div class='row'>
+        <div class='col-md-3 sideFrame'>
+            <p>CURRENT LEADERBOARD</p>
+        </div>
+        <div class='col-md-9'>
+            
+            <div class='thumbnail'>
+                <h1><%= event.name %> - <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %></h1>
+                
+                <hr>
+                
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-positions-tab" data-toggle="tab" href="#nav-positions" role="tab" aria-controls="nav-positions" aria-selected="true">Positions</a>
+                    <a class="nav-item nav-link" id="nav-scores-tab" data-toggle="tab" href="#nav-scores" role="tab" aria-controls="nav-scores" aria-selected="false">Scores</a>
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-positions" role="tabpanel" aria-labelledby="nav-positions-tab">
+                      <p class='leaderboard-item' id='first-place'>1st - <%= event.winner %></p>
+                      <p class='leaderboard-item' id='second-place'>2nd - <%= event.runnerUp %></p>
+                      <p class='leaderboard-item' id='third-place'>3nd - <%= event.third %></p>
+                      <p class='leaderboard-item' id='fourth-place'>4nd - <%= event.fourth %></p>
+                  </div>
+                  <div class="tab-pane fade" id="nav-scores" role="tabpanel" aria-labelledby="nav-scores-tab">
+                      
+                  </div>
+                </div>
+                
+            </div>
+            
+        </div>
 
-<ul>
-    <li><%= event.date %></li>
-    <li><%= event.maxPlayers %></li>
-    <li><%= event.maxPoints %></li>
-</ul>
+    </div>
+    
+</div>
+
+<!--<h1><%= event.name %></h1>-->
+
+
 
 
 <% include ../partials/footer %>
 
-<!--name: req.body.name,-->
-<!--date: req.body.date,-->
-<!--maxPlayers: req.body.maxPlayers,-->
-<!--maxPoints: req.body.maxPoints-->
+
+
+<!--var eventsSchema = new mongoose.Schema({-->
+<!--   name: String,-->
+<!--   firstPoints: Number,-->
+<!--   secondPoints: Number,-->
+<!--   thirdPoints: Number,-->
+<!--   fourthPoints: Number,-->
+<!--   date: Date,-->
+<!--   winner: String,-->
+<!--   runnerUp: String,-->
+<!--   third: String,-->
+<!--   fourth: String-->
+<!--});-->

@@ -10,13 +10,16 @@
 
         <div class='col-md-3 col-sm-6'>
             <div class='card mb-4'>
-                <div class='card-body text-center'>
+                <div class='card-body text-center event-card'>
                     
                     <h4 class='card-title'><%= event.name %></h4>
                     
-                    <p class='card-text'>Date - <%= event.date %></p>
-                    <p class='card-text'>Maximum Points - <%= event.maxPoints %></p>
-                    <p class='card-text'>Maximum Players - <%= event.maxPlayers %></p>
+                    <p class='card-text'>Date - <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %></p>
+                    <p class='card-text lead' style='color: gold;'>Winner - <%= event.winner %></p>
+                    <p class='card-text' style='color: silver;'>Runner Up - <%= event.runnerUp %></p>
+                    
+                    <a class='btn btn-block btn-secondary' href='/events/<%= event._id %>'>View More</a>
+                    
                 </div>
 
             </div>
@@ -28,14 +31,13 @@
 
     
     <div id='newEventBtn'>
-        <button id="modalActivate" type="button" class="btn btn-lg btn-rgsgreen" data-toggle="modal"data-target="#newEventModal">Add new event</button>
+        <button id="modalActivate" type="button" class="btn btn-lg btn-primary btn-custom" data-toggle="modal" data-target="#newEventModal">Add new event</button>
         <!--<a href='/events/new'>New Event</a>-->
     </div>
 
 </div>
 
 <!--new event modal-->
-
 
 <div class='modal fade right' id='newEventModal' tabindex='-1' role='dialog' aria-labeledby='modalTitle'
 aria-hidden='true'>
@@ -51,41 +53,76 @@ aria-hidden='true'>
             
             <div class='modal-body mx-3'>
                 <form action='/events' method='POST' id='newEventForm'>
-                    <div class='md-form mb-5'>
-                        <input type='text' id='evtName' name='name' class='form-control'>
-                        <label for='evtName'>New Event Name</label>
-                    </div>
                     
                     <div class='md-form mb-5'>
-                        <input type='date' id='evtDate' name='date' class='form-control' placeholder='DD/MM/YYYY'>
-                        <label for='evtDate'>Event Date</label>
-                    </div>
-                    
-                    <div class='md-form mb-5'>
-                        <input type="number" id="evtNumPlayers" name='maxPlayers' class="form-control">
-                        <label for="evtNumPlayers">Event Maximum Players</label>
-                    </div>
-                    
-                    <div class='md-form mb-5'>
-                        <input type="number" id="evtMaxPoints" name='maxPoints' class="form-control">
-                        <label for="evtMaxPoints">Event Maximum Available Points</label>
-                    </div>
-                    
-                    <!--<div class='md-form'>-->
-                    <!--    <div class="custom-control custom-radio custom-control-inline">-->
-                    <!--        <input type="radio" class="form-control custom-control-input" id="male" name="evtGender">-->
-                    <!--        <label class="custom-control-label" for="male">Male</label>-->
-                    <!--    </div>-->
+                        <label for='name'>Event Name</label>
+                        <input type='text' id='name' name='event[name]' class='form-control' required>
                         
-                    <!--    <div class='custom-control custom-radio custom-control-inline'>-->
-                    <!--        <input type='radio' class='form-control custom-control-input' id='female' name='evtGender'>-->
-                    <!--        <label class='custom-control-label' for='female'>Female</label>-->
-                    <!--    </div>-->
-                    <!--    <div class='custom-control custom-radio custom-control-inline'>-->
-                    <!--        <input type='radio' class='form-control custom-control-input' id='mixed' name='evtGender'>-->
-                    <!--        <label class='custom-control-label' for='mixed'>Mixed</label>-->
-                    <!--    </div>-->
-                    <!--</div>-->
+                    </div>
+                    
+                    <div class='md-form mb-5'>
+                        <label for='date'>Event Date</label>
+                        <input type='date' id='date' name='event[date]' class='form-control' required>
+                        
+                    </div>
+                    
+                    
+                    <div class='md-form mb-5'>
+                        <label for='winner'>Winner</label>
+                        <input type='text' id='winner' name='event[winner]' class='form-control' required>
+                        
+                    </div>
+                    
+                    <div class='md-form mb-5'>
+                        <label for="firstPoints">Winner Points</label>
+                        <input type="number" id="firstPoints" name='event[firstPoints]' class="form-control" required>
+                        
+                    </div>
+
+                    
+                    <div class='md-form mb-5'>
+                        <label for='runnerUp'>Runner Up</label>
+                        <input type='text' id='runnerUp' name='event[runnerUp]' class='form-control' required>
+                        
+                    </div>
+                    
+                    <div class='md-form mb-5'>
+                        <label for="secondPoints">Runner Up Points</label>
+                        <input type="number" id="secondPoints" name='event[secondPoints]' class="form-control" required>
+                        
+                    </div>
+                    
+                    
+                    <div class='md-form mb-5'>
+                        <label for='third'>Third Place</label>
+                        <input type='text' id='third' name='event[third]' class='form-control' required>
+                        
+                    </div>
+                    
+                    <div class='md-form mb-5'>
+                        <label for="thirdPoints">Third Place Points</label>
+                        <input type="number" id="thirdPoints" name='event[thirdPoints]' class="form-control" required>
+                        
+                    </div>
+                    
+
+                    <div class='md-form mb-5'>
+                        <label for='fourth'>Fourth</label>
+                        <input type='text' id='fourth' name='event[fourth]' class='form-control' required>
+                        
+                    </div>
+                    
+                    <div class='md-form mb-5'>
+                        <label for="fourthPoints">Fourth Place Points</label>
+                        <input type="number" id="fourthPoints" name='event[fourthPoints]' class="form-control" required>
+                        
+                    </div>
+
+
+                    
+
+                    
+
                 </form>
 
             </div>
