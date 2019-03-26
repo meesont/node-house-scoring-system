@@ -39,3 +39,17 @@ footer {
 .paddingFix {
     padding-top: 10px;
 }
+
+#nav-positions, #nav-scores {
+    padding: 10px;
+}
+
+.leaderboard-item {
+    font-size: 20px;
+}
+
+#first-place{
+    font-weight: bold;
+    font-size: 40px;
+    color: gold;
+}
