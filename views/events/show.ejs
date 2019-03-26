@@ -23,10 +23,20 @@
                   <div class="tab-pane fade show active" id="nav-positions" role="tabpanel" aria-labelledby="nav-positions-tab">
                       <p class='leaderboard-item' id='first-place'>1st - <%= event.winner %></p>
                       <p class='leaderboard-item' id='second-place'>2nd - <%= event.runnerUp %></p>
-                      <p class='leaderboard-item' id='third-place'>3nd - <%= event.third %></p>
-                      <p class='leaderboard-item' id='fourth-place'>4nd - <%= event.fourth %></p>
+                      <p class='leaderboard-item' id='third-place'>3rd - <%= event.third %></p>
+                      <p class='leaderboard-item' id='fourth-place'>4th - <%= event.fourth %></p>
                   </div>
                   <div class="tab-pane fade" id="nav-scores" role="tabpanel" aria-labelledby="nav-scores-tab">
+                      
+                      <p class='lead'>
+                          These are the points that each house was awarded for their efforts in this event
+                      </p>
+                      
+                      <p class='leaderboard-item'><%= event.winner %> - <%= event.firstPoints %></p>
+                      <p class='leaderboard-item'><%= event.runnerUp %> - <%= event.secondPoints %></p>
+                      <p class='leaderboard-item'><%= event.third %> - <%= event.thirdPoints %></p>
+                      <p class='leaderboard-item'><%= event.fourth %> - <%= event.fourthPoints %></p>
+                      
                       
                   </div>
                 </div>
