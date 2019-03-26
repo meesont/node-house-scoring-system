@@ -1,0 +1,13 @@
+<% include ./partials/header %>
+
+<h1>This is the secret page</h1>
+
+<p>details</p>
+<ul>
+    <li>ID - <%= currentUser._id %></li>
+    <li>USERNAME - <%= currentUser.username %></li>
+</ul>
+
+<a href='/logout'>Log out test</a>
+
+<% include ./partials/footer %>
