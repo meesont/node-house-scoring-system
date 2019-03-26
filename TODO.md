@@ -30,6 +30,8 @@
     * Events **DONE**
     * Houses
     * Users
+* Redo events index
+* Redo events form 
 
 ### RESTFUL ROUTES
 
