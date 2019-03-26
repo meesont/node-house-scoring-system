@@ -107,16 +107,49 @@ app.get('/events/:id', function(req, res) {
     });
 });
 
+
 // ========================
-// LOGIN/REGISTER ROUTE
+// SECRET ROUTE
+// ========================
+
+app.get('/hidden', isLoggedIn, function(req, res){
+    res.render('hidden', {pageTitle: 'Hidden Page', currentUser: req.user});
+});
+
+// ========================
+// LOGIN/REGISTER/LOGOUT ROUTES
 // ========================
 
 app.get('/login', function(req, res) {
     res.render('login', {pageTitle: 'Login'});
 });
 
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/hidden',
+    faliureRedirect: '/events'
+}), function(req, res){
+    
+});
+
 app.get('/register', function(req, res) {
    res.render('register', {pageTitle: 'Register'});
+});
+
+app.post('/register', function(req, res){
+    User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render('error', {pageTitle: 'Error'});
+        }
+        passport.authenticate('local')(req, res, function(){
+            res.redirect('/hidden');
+        });
+    });
+});
+
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
 });
 
 
@@ -135,7 +168,6 @@ app.get('/*', function(req, res){
 
 
 
-// ========================
 // ========================
 // MIDDLEWARE
 // ========================
