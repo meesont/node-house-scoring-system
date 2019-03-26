@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+// var mongoose = require("mongoose");
 
-var memberSchema = new mongoose.Schema({
-    name: String,
-    age: Number
-});
+// var memberSchema = new mongoose.Schema({
+//     name: String,
+//     age: Number
+// });
 
-module.exports = mongoose.model('Member', memberSchema);
+// module.exports = mongoose.model('Member', memberSchema);

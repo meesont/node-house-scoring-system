@@ -9,16 +9,12 @@ there are only 4 houese
 var houseSchema = new mongoose.Schema({
     name: String,
     houseMaster: String,
+    email: String,
+    totalPoints: Number,
     events: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Event'
-        }
-    ],
-    members: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Member'
         }
     ]
 });
