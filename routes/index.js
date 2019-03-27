@@ -1,5 +1,5 @@
 const express = require('express'),
-    router = express.router(),
+    router = express.Router(),
     User = require('../models/user'),
     passport = require('passport');
 
@@ -66,11 +66,11 @@ router.get('/logout', function(req, res) {
 // ERROR AND DEFAULT
 // =================
 
-app.get('/error', function(req, res) {
+router.get('/error', function(req, res) {
     res.render('error', {pageTitle: 'Error'});
 });
 
-app.get('/*', function(req, res){
+router.get('/*', function(req, res){
     res.render('error', {pageTitle: 'Error'});
 });
 
