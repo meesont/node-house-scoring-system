@@ -39,8 +39,12 @@ app.use(passport.session());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
 passport.use(new LocalStrategy(User.authenticate()));
+
+
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+});
 
 
 // ========================
@@ -51,7 +55,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 //Home route
 app.get('/', function(req, res) {
     var title = 'Home';
-    res.render('landing', {pageTitle: title, currentUser: req.user}); //This tells express to render the home.ejs page, and we supply it with an object called title which is referenced within the ejs
+    res.render('landing', {pageTitle: title}); //This tells express to render the home.ejs page, and we supply it with an object called title which is referenced within the ejs
     //file as pageTitle
 });
 
@@ -72,7 +76,7 @@ app.get('/events', function(req, res) {
            console.log(err);
            res.redirect('/error');
        } else {
-           res.render('events/index', {pageTitle: title, events: events, currentUser: req.user});
+           res.render('events/index', {pageTitle: title, events: events});
        }
     });
     
@@ -102,7 +106,7 @@ app.get('/events/:id', function(req, res) {
             res.redirect('/error');
         } else {
             var name = event.name;
-            res.render('events/show', {pageTitle: name, event: event, currentUser: req.user});
+            res.render('events/show', {pageTitle: name, event: event});
         }
     });
 });
@@ -113,7 +117,7 @@ app.get('/events/:id', function(req, res) {
 // ========================
 
 app.get('/hidden', isLoggedIn, function(req, res){
-    res.render('hidden', {pageTitle: 'Hidden Page', currentUser: req.user});
+    res.render('hidden', {pageTitle: 'Hidden Page'});
 });
 
 // ========================
@@ -121,7 +125,7 @@ app.get('/hidden', isLoggedIn, function(req, res){
 // ========================
 
 app.get('/login', function(req, res) {
-    res.render('login', {pageTitle: 'Login', currentUser: req.user});
+    res.render('login', {pageTitle: 'Login'});
 });
 
 app.post('/login', passport.authenticate('local', 
@@ -133,7 +137,7 @@ app.post('/login', passport.authenticate('local',
 });
 
 app.get('/register', function(req, res) {
-   res.render('register', {pageTitle: 'Register', currentUser: req.user});
+   res.render('register', {pageTitle: 'Register'});
 });
 
 app.post('/register', function(req, res){
@@ -159,12 +163,12 @@ app.get('/logout', function(req, res) {
 // ========================
 
 app.get('/error', function(req, res) {
-    res.render('error', {pageTitle: 'Error', currentUser: req.user});
+    res.render('error', {pageTitle: 'Error'});
 });
 
 app.get('/*', function(req, res){
     var title = 'Error';
-    res.render('error', {pageTitle: title, currentUser: req.user});
+    res.render('error', {pageTitle: title});
 });
 
 
