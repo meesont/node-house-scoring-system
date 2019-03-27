@@ -3,8 +3,7 @@ const express = require('express'),
     User = require('../models/user'),
     passport = require('passport');
 
-
-const loginToken = 'thisIsAnExampleLoginToken';
+const loginToken = (process.env.LOGINTOKEN || 'loginToken');
 
 // home route
 router.get('/', function(req, res) {
@@ -92,4 +91,5 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
+module.exports.loginToken = loginToken;
 module.exports = router;

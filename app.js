@@ -15,7 +15,8 @@ const express = require("express"), //This defines the requirement for express
     seedDB = require("./seeds");
 
 const eventRoutes = require('./routes/events'),
-    indexRoutes = require('./routes/index');
+    indexRoutes = require('./routes/index'),
+    leaderboardRoutes = require('./routes/leaderboards');
 
 app.use(express.static(__dirname + '/public')); //This sets the path for where express can find the CSS and JS files for the frontend
 app.set('view engine', 'ejs'); //This sets the view engine for the project, saves me time when writing the res.render methods
@@ -54,15 +55,17 @@ app.use(function(req, res, next){
 // ========================
 
 app.use('/events', eventRoutes);
+app.use('/leaderboards', leaderboardRoutes);
 app.use(indexRoutes);
 
 // ========================
 // LISTENER
 // ========================
 
-const port = 8080
+const port = 8080;
 
 app.listen(port, function(){
     console.log('Server Initalised');
     console.log('localhost:' + port);
+    // console.log('LOGINTOKEN:' + loginToken);
 });
