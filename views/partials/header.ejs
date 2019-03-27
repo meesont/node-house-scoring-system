@@ -58,13 +58,21 @@
                 
                 <!--Login and Register forms -->
                 <ul class="navbar-nav">
-                    <li class="<%= pageTitle == 'Login' ? 'navbar-item active' : 'navbar-item' %>">
-                        <a href="/login" class="nav-link"><i class="fas fa-user"></i> Login</a>
-                    </li>
                     
-                    <li class="<%= pageTitle == 'Register' ? 'navbar-item active' : 'navbar-item' %>">
-                        <a href="/register" class="nav-link" id='registerBtn'><i class="fas fa-user-plus"></i> Signup</a>
-                    </li>
+                    <% if (!currentUser) { %>
+                        <li class="<%= pageTitle == 'Login' ? 'navbar-item active' : 'navbar-item' %>">
+                            <a href="/login" class="nav-link"><i class="fas fa-user"></i> Login</a>
+                        </li>
+                        
+                        <li class="<%= pageTitle == 'Register' ? 'navbar-item active' : 'navbar-item' %>">
+                            <a href="/register" class="nav-link" id='registerBtn'><i class="fas fa-user-plus"></i> Signup</a>
+                        </li>
+                    <% } else { %>
+                        <li class="navbar-item">
+                            <a href='/logout' class='nav-link'><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>                    
+                    <% } %>
+
                 </ul>
             </div>
         

@@ -51,7 +51,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 //Home route
 app.get('/', function(req, res) {
     var title = 'Home';
-    res.render('landing', {pageTitle: title}); //This tells express to render the home.ejs page, and we supply it with an object called title which is referenced within the ejs
+    res.render('landing', {pageTitle: title, currentUser: req.user}); //This tells express to render the home.ejs page, and we supply it with an object called title which is referenced within the ejs
     //file as pageTitle
 });
 
@@ -72,7 +72,7 @@ app.get('/events', function(req, res) {
            console.log(err);
            res.redirect('/error');
        } else {
-           res.render('events/index', {pageTitle: title, events: events});
+           res.render('events/index', {pageTitle: title, events: events, currentUser: req.user});
        }
     });
     
@@ -102,14 +102,14 @@ app.get('/events/:id', function(req, res) {
             res.redirect('/error');
         } else {
             var name = event.name;
-            res.render('events/show', {pageTitle: name, event: event});
+            res.render('events/show', {pageTitle: name, event: event, currentUser: req.user});
         }
     });
 });
 
 
 // ========================
-// SECRET ROUTE
+// HIDDEN ROUTE
 // ========================
 
 app.get('/hidden', isLoggedIn, function(req, res){
@@ -121,18 +121,19 @@ app.get('/hidden', isLoggedIn, function(req, res){
 // ========================
 
 app.get('/login', function(req, res) {
-    res.render('login', {pageTitle: 'Login'});
+    res.render('login', {pageTitle: 'Login', currentUser: req.user});
 });
 
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/hidden',
-    faliureRedirect: '/events'
-}), function(req, res){
+app.post('/login', passport.authenticate('local', 
+    {
+        successRedirect: '/hidden',
+        failureRedirect: '/login'
+    }), function(req, res){
     
 });
 
 app.get('/register', function(req, res) {
-   res.render('register', {pageTitle: 'Register'});
+   res.render('register', {pageTitle: 'Register', currentUser: req.user});
 });
 
 app.post('/register', function(req, res){
@@ -158,12 +159,12 @@ app.get('/logout', function(req, res) {
 // ========================
 
 app.get('/error', function(req, res) {
-    res.render('error', {pageTitle: 'Error'});
+    res.render('error', {pageTitle: 'Error', currentUser: req.user});
 });
 
 app.get('/*', function(req, res){
     var title = 'Error';
-    res.render('error', {pageTitle: title});
+    res.render('error', {pageTitle: title, currentUser: req.user});
 });
 
 
