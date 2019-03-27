@@ -11,6 +11,7 @@
     * Possibly use invite only method providing link to random str of characters **CANCELED**
 * Fix footer styling **DONE**
 * Add algorithm to calculate scoreboard
+    * This is not required, it can be done with 3 lines of programming 
     * Discuss big O notation for this algorithm
     * Fairly simple alg, use basic sort alg w lowest time complexity
 * Fix styling on the date input label in events.ejs **DONE**
@@ -18,20 +19,22 @@
     * /home **DONE**
     * /events **DONE**
     * /leaderboards
-    * /houses
-    * /login
-    * /register
+    * /houses **CANCELED**
+    * /login **DONE**
+    * /register **DONE**
     * Default route
 * Organise files into folder for easier viewing **IN PROGRESS**
 * Move routes into seperate files, then import into app.js
 * Fix naming to conform with RESTful routing **DONE**
 * Move mongoose schema to seperate models folder **DONE**
-* Collection modeling 
+* Collection modeling
     * Events **DONE**
     * Houses **DONE**
     * Users **DONE**
 * Redo events index
-* Redo events form 
+* Redo events form
+* restyle events form
+*
 
 ### RESTFUL ROUTES
 
