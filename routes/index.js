@@ -3,7 +3,10 @@ const express = require('express'),
     User = require('../models/user'),
     passport = require('passport');
 
-    //Home route
+
+const loginToken = 'thisIsAnExampleLoginToken';
+
+// home route
 router.get('/', function(req, res) {
     var title = 'Home';
     res.render('landing', {pageTitle: title}); //This tells express to render the home.ejs page, and we supply it with an object called title which is referenced within the ejs
@@ -14,8 +17,6 @@ router.get('/home', function(req, res) {
     res.redirect('/'); //This function just simply redirects the homepage, rather than repating the code to render the homepage
 });
 
-
-//EVENT PAGE MANAGEMENT
 
 // ========================
 // HIDDEN ROUTE
@@ -46,16 +47,25 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res){
-    User.register(new User({username: req.body.username}), req.body.password, function(err, user){
-        if(err){
-            console.log(err);
-            return res.render('error', {pageTitle: 'Error'});
-        }
-        passport.authenticate('local')(req, res, function(){
-            res.redirect('/hidden');
+    if(req.body.loginToken === loginToken){
+        User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+            if(err){
+                console.log(err);
+                return res.render('errors/error', {pageTitle: 'Error'});
+            }
+            passport.authenticate('local')(req, res, function(){
+                res.redirect('/hidden');
+            });
         });
-    });
+    } else {
+        return res.redirect('/register/incorrectToken');
+    }
+
 });
+
+router.get('/register/incorrectToken', function(req, res) {
+    res.render('errors/incorrectToken', {pageTitle: 'Incorrect Token'});
+})
 
 router.get('/logout', function(req, res) {
     req.logout();
@@ -67,11 +77,11 @@ router.get('/logout', function(req, res) {
 // =================
 
 router.get('/error', function(req, res) {
-    res.render('error', {pageTitle: 'Error'});
+    res.render('errors/error', {pageTitle: 'Error'});
 });
 
 router.get('/*', function(req, res){
-    res.render('error', {pageTitle: 'Error'});
+    res.render('errors/error', {pageTitle: 'Error'});
 });
 
 
