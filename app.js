@@ -44,6 +44,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    next();
 });
 
 
@@ -79,7 +80,7 @@ app.get('/events', function(req, res) {
            res.render('events/index', {pageTitle: title, events: events});
        }
     });
-    
+
 });
 
 app.post('/events', function(req, res) {
@@ -95,11 +96,11 @@ app.post('/events', function(req, res) {
             res.redirect('/events');
         }
     });
-   
+
 });
 
 app.get('/events/:id', function(req, res) {
-    
+
     Event.findById(req.params.id, function(err, event) {
         if(err) {
             console.log(err);
@@ -128,12 +129,12 @@ app.get('/login', function(req, res) {
     res.render('login', {pageTitle: 'Login'});
 });
 
-app.post('/login', passport.authenticate('local', 
+app.post('/login', passport.authenticate('local',
     {
         successRedirect: '/hidden',
         failureRedirect: '/login'
     }), function(req, res){
-    
+
 });
 
 app.get('/register', function(req, res) {
@@ -189,8 +190,9 @@ function isLoggedIn(req, res, next) {
 // LISTENER
 // ========================
 
+const port = 8080
 
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(port, function(){
     console.log('Server Initalised');
-    console.log(process.env.IP + ':' + process.env.PORT);
+    console.log('localhost:' + port);
 });
