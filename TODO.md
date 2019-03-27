@@ -7,11 +7,11 @@
 * Fix styling for the events rendering **DONE**
 * Setup authentication
     * Install passport **DONE**
-    * Setup second step auth to prevent unwanted people creating accounts
+    * Setup second step auth to prevent unwanted people creating accounts **DONE**
     * Possibly use invite only method providing link to random str of characters **CANCELED**
 * Fix footer styling **DONE**
 * Add algorithm to calculate scoreboard
-    * This is not required, it can be done with 3 lines of programming 
+    * This is not required, it can be done with 3 lines of programming
     * Discuss big O notation for this algorithm
     * Fairly simple alg, use basic sort alg w lowest time complexity
 * Fix styling on the date input label in events.ejs **DONE**
@@ -24,17 +24,17 @@
     * /register **DONE**
     * Default route
 * Organise files into folder for easier viewing **IN PROGRESS**
-* Move routes into seperate files, then import into app.js
+* Move routes into separate files, then import into app.js **DONE**
 * Fix naming to conform with RESTful routing **DONE**
-* Move mongoose schema to seperate models folder **DONE**
-* Collection modeling
+* Move mongoose schema to separate models folder **DONE**
+* Collection modelling
     * Events **DONE**
     * Houses **DONE**
     * Users **DONE**
 * Redo events index
 * Redo events form
 * restyle events form
-*
+* style login/register forms **DONE**
 
 ### RESTFUL ROUTES
 
