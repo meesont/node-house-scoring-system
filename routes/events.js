@@ -35,6 +35,7 @@ router.post('/', isLoggedIn, function(req, res) {
 
 });
 
+// SHOW ROUTE
 router.get('/:id', function(req, res) {
 
     Event.findById(req.params.id, function(err, event) {
