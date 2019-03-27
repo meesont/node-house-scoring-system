@@ -83,7 +83,7 @@ app.get('/events', function(req, res) {
 
 });
 
-app.post('/events', function(req, res) {
+app.post('/events', isLoggedIn, function(req, res) {
 
     //req.body.event used as entire form is done in event[value] style
 
