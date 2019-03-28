@@ -2,28 +2,6 @@ var mongoose = require("mongoose"),
     Event = require("./models/event"),
     House = require("./models/house");
 
-
-// var dataEvent = [
-//     {
-//         name: 'Example event 1',
-//         maxPoints: 10,
-//         maxPlayers: 5,
-//         date: new Date("2019-03-13T00:00:00Z")
-//     },
-//     {
-//         name: 'Example event 2',
-//         maxPoints: 20,
-//         maxPlayers: 3,
-//         date: new Date("2019-02-10T00:00:00Z")
-//     },
-//     {
-//         name: 'Example event 3',
-//         maxPoints: 1000,
-//         maxPlayers: 204,
-//         date: new Date("2020-06-29T00:00:00Z")
-//     }
-// ];
-
 var dataHouse = [
     {
         name: 'Wylde',
