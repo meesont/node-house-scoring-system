@@ -5,15 +5,28 @@ const express = require('express'),
 
 router.get('/', function(req, res){
 
-    House.find({}, function(err, houses){
+    var mySort = {totalPoints: -1};
+
+    House.find().sort(mySort).exec(function(err, houses){
         if(err){
             console.log(err);
             res.redirect('/error');
         } else {
             res.render('houses/index', {pageTitle: 'Houses', houses: houses});
         }
-    })
-    // res.render('leaderboards/index', {pageTitle: 'Leaderboards', houses: })
+    });
+});
+
+router.get('/:id', function(req, res){
+
+    House.findById(req.params.id, function(err, house){
+        if(err){
+            console.log(err);
+            res.redirect('/error');
+        } else {
+            res.render('houses/show', {pageTitle: house.name, house: house});
+        }
+    });
 });
 
 module.exports = router;
