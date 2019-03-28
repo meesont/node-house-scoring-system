@@ -1,35 +1,36 @@
 var mongoose = require("mongoose"),
     Event = require("./models/event"),
-    House = require("./models/house");
+    House = require("./models/house"),
+    User = require('./models/user');
 
 var dataHouse = [
     {
         name: 'Wylde',
         houseMaster: 'Dr Davison',
         email: 'ald@rgsw.org.uk',
-        totalPoints: 0,
-        colour: 'aqua'
+        totalPoints: 20,
+        colour: 'LightSkyBlue'
     },
     {
         name: 'Whiteladies',
         houseMaster: 'Miss Binner',
         email: 'erb@rgsw.org.uk',
-        totalPoints: 0,
-        colour: 'red'
+        totalPoints: 40,
+        colour: 'Crimson'
     },
     {
         name: 'Ottley',
         houseMaster: 'Mr Morgan',
         email: 'dam@rgsw.org.uk',
-        totalPoints: 0,
-        colour: 'yellow'
+        totalPoints: 5,
+        colour: 'Gold'
     },
     {
         name: 'Elgar',
         houseMaster: 'Mr Friend',
         email: 'jcf@rgsw.org.uk',
         totalPoints: 0,
-        colour: 'orange'
+        colour: '#FFA500'
     }
 ];
 
@@ -92,6 +93,28 @@ function seedDB(){
         }
     });
 }
+
+// function seedUserDB(){
+//     User.deleteMany({}, function(err){
+//         if(err) {
+//             console.log(err);
+//         } else {
+//             console.log('removed user db');
+//
+//             User.create({
+//                 username: 'admin',
+//                 password: 'admin'
+//             }, function(err, user){
+//                 if(err){
+//                     console.log(err);
+//                 } else {
+//                     console.log('created admin user');
+//                     console.log(user);
+//                 }
+//             });
+//         }
+//     });
+// }
 
 module.exports = seedDB;
 
