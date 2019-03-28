@@ -1,18 +1,21 @@
 <% include ../partials/header %>
 
 <div class="container-fluid">
-    <h1 class='h1-responsive'>Houses</h1>
+    <h1 class='h1-responsive text-center'>Houses</h1>
 
     <% houses.forEach(function(house){ %>
         <div class="row">
             <div class="col-md-12" style='margin-bottom: 20px;'>
-                <div class="card" >
-                    <div class="card-header">
-                        <h3><%= house.name %><span class='float-right'>#1</span></h3>
+                <div class="card" style=''>
+                    <div class="card-header" style='background: <%= house.colour %>;'>
+                        <h3><%= house.name %><span class='float-right'>#2</span></h3>
                     </div>
                     <div class="card-body">
-                        <p><%= house.houseMaster %></p>
-                        <p><%= house.email %></p>
+                        <p class='lead'><%= house.houseMaster %></p>
+                        <p class='lead'><%= house.email %></p>
+
+                        <a class='btn btn-lg btn-primary' href='/houses/<%= house._id %>'>View More</a>
+
                     </div>
                 </div>
             </div>
