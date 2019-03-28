@@ -18,11 +18,10 @@
 * Routes
     * /home **DONE**
     * /events **DONE**
-    * /leaderboards
-    * /houses **CANCELED**
+    * /houses **DONE**
     * /login **DONE**
     * /register **DONE**
-    * Default route
+    * Default route **DONE**
 * Organise files into folder for easier viewing **IN PROGRESS**
 * Move routes into separate files, then import into app.js **DONE**
 * Fix naming to conform with RESTful routing **DONE**
@@ -35,6 +34,9 @@
 * Redo events form
 * restyle events form
 * style login/register forms **DONE**
+* update houses to organise in position
+    * nth-child?
+    * organisation alg from website?
 
 ### RESTFUL ROUTES
 
@@ -44,3 +46,4 @@ INDEX | /events | GET | Display a list of all events
 NEW | /events/new | GET | Displays form to make new event *not used*
 CREATE | /events | POST | Add new event to db
 SHOW | /event/:id | GET | Shows info about specific event
+INDEX | /houses | GET | Display a list of all houses
