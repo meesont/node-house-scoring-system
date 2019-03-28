@@ -29,25 +29,29 @@ var dataHouse = [
         name: 'Wylde',
         houseMaster: 'Dr Davison',
         email: 'ald@rgsw.org.uk',
-        totalPoints: 0
+        totalPoints: 0,
+        colour: 'aqua'
     },
     {
         name: 'Whiteladies',
         houseMaster: 'Miss Binner',
         email: 'erb@rgsw.org.uk',
-        totalPoints: 0
+        totalPoints: 0,
+        colour: 'red'
     },
     {
         name: 'Ottley',
         houseMaster: 'Mr Morgan',
         email: 'dam@rgsw.org.uk',
-        totalPoints: 0
+        totalPoints: 0,
+        colour: 'yellow'
     },
     {
         name: 'Elgar',
         houseMaster: 'Mr Friend',
         email: 'jcf@rgsw.org.uk',
-        totalPoints: 0
+        totalPoints: 0,
+        colour: 'orange'
     }
 ];
 
@@ -58,14 +62,14 @@ function seedDB(){
             console.log(err);
         } else {
             console.log('removed all houses');
-            
+
             //REMOVE HOUSES
             Event.deleteMany({}, function(err) {
                 if(err) {
                     console.log(err);
                 } else {
                     console.log('removed all events');
-                    
+
                      // REPOPULATE DATABASE
                      dataHouse.forEach(function(seed) {
                          House.create(seed, function(err, house){
@@ -73,7 +77,7 @@ function seedDB(){
                                  console.log(err);
                              } else {
                                  console.log('created house');
-                                 
+
                                  Event.create({
                                      name: 'Football',
                                      firstPoints: 10,
@@ -101,7 +105,7 @@ function seedDB(){
                                          });
                                      }
                                  });
-                                 
+
                              }
                          });
                      });
@@ -119,7 +123,7 @@ module.exports = seedDB;
 - House
 - Member
 - use data to seed dbs
-- create 
+- create
 
 var eventsSchema = new mongoose.Schema({
    name: String,
