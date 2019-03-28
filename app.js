@@ -2,7 +2,6 @@
 // SETUP
 // ========================
 
-
 const express = require("express"), //This defines the requirement for express
     app = express(), //This initilises the express app
     bodyParser = require("body-parser"),
@@ -16,7 +15,7 @@ const express = require("express"), //This defines the requirement for express
 
 const eventRoutes = require('./routes/events'),
     indexRoutes = require('./routes/index'),
-    leaderboardRoutes = require('./routes/leaderboards');
+    houseRoutes = require('./routes/houses');
 
 app.use(express.static(__dirname + '/public')); //This sets the path for where express can find the CSS and JS files for the frontend
 app.set('view engine', 'ejs'); //This sets the view engine for the project, saves me time when writing the res.render methods
@@ -55,7 +54,7 @@ app.use(function(req, res, next){
 // ========================
 
 app.use('/events', eventRoutes);
-app.use('/leaderboards', leaderboardRoutes);
+app.use('/houses', houseRoutes);
 app.use(indexRoutes);
 
 // ========================

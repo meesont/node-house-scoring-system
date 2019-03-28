@@ -3,7 +3,7 @@ const express = require('express'),
     User = require('../models/user'),
     passport = require('passport');
 
-const loginToken = (process.env.LOGINTOKEN || 'loginToken');
+const loginToken = (process.env.LOGINTOKEN || '9NQBmSuw6qK8zpxJII60dqJIDLACQ0yJwmQhWvpdjCZ26sLvqi');
 
 // home route
 router.get('/', function(req, res) {
@@ -45,6 +45,8 @@ router.get('/register', function(req, res) {
    res.render('register', {pageTitle: 'Register'});
 });
 
+
+// uses loginToken to check if if user is valid and allowed to create an account
 router.post('/register', function(req, res){
     if(req.body.loginToken === loginToken){
         User.register(new User({username: req.body.username}), req.body.password, function(err, user){
