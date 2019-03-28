@@ -11,6 +11,7 @@ var houseSchema = new mongoose.Schema({
     houseMaster: String,
     email: String,
     totalPoints: Number,
+    colour: String,
     events: [
         {
             type: mongoose.Schema.Types.ObjectId,
