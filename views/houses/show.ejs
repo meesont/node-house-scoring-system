@@ -1,0 +1,53 @@
+<% include ../partials/header %>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <h1><%= house.name %></h1>
+
+            <p class='lead'>Housemaster - <%= house.houseMaster %></p>
+
+            <p class='lead'><a href="mailto:<%= house.email %>?subject=Question for houseMaster"><%= house.email %></a></p>
+            <p class='lead'>Total Points - <%= house.totalPoints %></p>
+            <p class='lead'>House Colour - <%= house.colour %></p>
+
+            <div>
+                <% events.forEach(function(event){ %>
+                    <div class='card mb-4'>
+                        <div class='card-body text-center event-card'>
+
+                            <h4 class='card-title'><%= event.name %></h4>
+
+
+                            <p class='card-text lead' style='color: gold;'>Winner - <%= event.winner %></p>
+                            <p class='card-text' style='color: silver;'>Runner Up - <%= event.runnerUp %></p>
+
+                            <a class='btn btn-block btn-primary' href='/events/<%= event._id %>'>View More</a>
+
+                        </div>
+
+                    </div>
+                <% }); %>
+            </div>
+
+            <!-- var houseSchema = new mongoose.Schema({
+                name: String,
+                houseMaster: String,
+                email: String,
+                totalPoints: Number,
+                colour: String,
+                events: [
+                    {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: 'Event'
+                    }
+                ]
+            }); -->
+        </div>
+
+    </div>
+</div>
+
+<% include ../partials/footer %>

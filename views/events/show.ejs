@@ -1,18 +1,18 @@
 <% include ../partials/header %>
 
 <div class='container-fluid' style='padding: 20px;'>
-    
+
     <div class='row'>
-        <div class='col-md-3 sideFrame'>
+        <!-- <div class='col-md-3 sideFrame'>
             <p>CURRENT LEADERBOARD</p>
-        </div>
-        <div class='col-md-9'>
-            
+        </div> -->
+        <div class='col-md-12'>
+
             <div class='thumbnail'>
                 <h1><%= event.name %> - <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %></h1>
-                
+
                 <hr>
-                
+
                 <nav>
                   <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-positions-tab" data-toggle="tab" href="#nav-positions" role="tab" aria-controls="nav-positions" aria-selected="true">Positions</a>
@@ -27,26 +27,26 @@
                       <p class='leaderboard-item' id='fourth-place'>4th - <%= event.fourth %></p>
                   </div>
                   <div class="tab-pane fade" id="nav-scores" role="tabpanel" aria-labelledby="nav-scores-tab">
-                      
+
                       <p class='lead'>
                           These are the points that each house was awarded for their efforts in this event
                       </p>
-                      
+
                       <p class='leaderboard-item'><%= event.winner %> - <%= event.firstPoints %></p>
                       <p class='leaderboard-item'><%= event.runnerUp %> - <%= event.secondPoints %></p>
                       <p class='leaderboard-item'><%= event.third %> - <%= event.thirdPoints %></p>
                       <p class='leaderboard-item'><%= event.fourth %> - <%= event.fourthPoints %></p>
-                      
-                      
+
+
                   </div>
                 </div>
-                
+
             </div>
-            
+
         </div>
 
     </div>
-    
+
 </div>
 
 <!--<h1><%= event.name %></h1>-->
