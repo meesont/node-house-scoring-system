@@ -35,7 +35,8 @@ const express = require("express"), //This defines the requirement for express
 
 const eventRoutes = require('./routes/events'),
     indexRoutes = require('./routes/index'),
-    houseRoutes = require('./routes/houses');
+    houseRoutes = require('./routes/houses'),
+    errorRoutes = require('./routes/errors');
 
 app.use(express.static(__dirname + '/public')); //This sets the path for where express can find the CSS and JS files for the frontend
 app.set('view engine', 'ejs'); //This sets the view engine for the project, saves me time when writing the res.render methods
@@ -75,6 +76,7 @@ app.use(function(req, res, next){
 
 app.use('/events', eventRoutes);
 app.use('/houses', houseRoutes);
+app.use(errorRoutes);
 app.use(indexRoutes);
 
 // ========================

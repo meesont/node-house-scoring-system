@@ -83,10 +83,6 @@ router.post('/register', function(req, res){
 
 });
 
-router.get('/register/incorrectToken', function(req, res) {
-    res.render('errors/incorrectToken', {pageTitle: 'Incorrect Token'});
-})
-
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
@@ -95,10 +91,6 @@ router.get('/logout', function(req, res) {
 // =================
 // ERROR AND DEFAULT
 // =================
-
-router.get('/error', function(req, res) {
-    res.render('errors/error', {pageTitle: 'Error'});
-});
 
 router.get('/*', function(req, res){
     res.render('errors/error', {pageTitle: 'Error'});
