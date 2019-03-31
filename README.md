@@ -4,16 +4,17 @@ Developed and deployed for RGS Worcester
 
 ## Current stack
 
-* HTML5 (EJS)
 * CSS3
 * JavaScript
+* MongoDB
 * Node.js
-  * Passport.js
-  * _ js
-  * Express.js
-  * Nodemon
-
-
+    * EJS
+    * Express
+    * Mongoose
+    * Passport
+        * Passport local
+        * Passport local mongoose
+    * Nodemon
 
 ***
 
