@@ -29,8 +29,14 @@ router.get('/error/incorrectDetails', function(req, res) {
     res.render('errors/incorrectDetails', {pageTitle: 'Incorrect Details'});
 });
 
+router.get('/error/notAuthenticated', function(req, res) {
+    res.render('errors/notAuthenticated', {pageTitle: 'Not Authenticated'});
+});
+
+
 router.get('/error', function(req, res) {
     res.render('errors/error', {pageTitle: 'Error'});
 });
+
 
 module.exports = router;

@@ -86,7 +86,7 @@ app.use(indexRoutes);
 const port = 8080;
 
 app.listen(port, function(){
-    console.log('Server Initalised');
+    console.log('House Scoring Sys v0.1-BETA');
     console.log('localhost:' + port);
     // console.log('LOGINTOKEN:' + loginToken);
 });

@@ -96,7 +96,6 @@ router.get('/*', function(req, res){
     res.render('errors/error', {pageTitle: 'Error'});
 });
 
-
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()){
         return next();
