@@ -3,30 +3,30 @@
     <head>
         <!--Meta-->
         <meta charset='utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- This meta is required to ensure when viewing a website on 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- This meta is required to ensure when viewing a website on
         a mobile device it appears correctly and in a more readable manor -->
-        
+
         <meta name='author' content='Thomas Meeson'>
         <meta name='description' content='A managed scoring system developed for RGSW using Node.js'>
-        
+
         <title>RGSW Houses - <%= pageTitle %></title>
-        
+
         <!--Stylesheets -->
         <link rel='stylesheet' href='/stylesheets/master.css' type='text/css'>
         <link rel='stylesheet' href='/stylesheets/customBootstrap.css' type='text/css'>
-        
+
         <!--Bootstrap 4 Content Delivery Network (CDN)-->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" 
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-        
+
         <!--Fontawsome CDN-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-        
+
         <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" -->
         <!--rel="stylesheet">-->
-        
-        
+
+
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-rgsgreen"> <!-- Create a navbar with a custom RGSW green shade background -->
@@ -37,16 +37,13 @@
             aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
-            
+
+
             <div class="navbar-collapse collapse" id="navCollapseItems">
             <!--TODO: Add navbar items -->
                 <ul class="navbar-nav mr-auto"> <!-- Mr-Auto aligns the items to right of the navbar -->
                     <li class="<%= pageTitle == 'Home' ? 'navbar-item active' : 'navbar-item' %>">
-                        <a href="/home" class="nav-link">Home</a> 
-                    </li>
-                    <li class="<%= pageTitle == 'Leaderboards' ? 'navbar-item active' : 'navbar-item' %>">
-                        <a href="/leaderboards" class="nav-link">Leaderboard</a>
+                        <a href="/home" class="nav-link">Home</a>
                     </li>
                     <li class="<%= pageTitle == 'Houses' ? 'navbar-item active' : 'navbar-item' %>">
                         <a href="/houses" class="nav-link">Houses</a>
@@ -55,25 +52,25 @@
                         <a href="/events" class="nav-link">Events</a>
                     </li>
                 </ul>
-                
+
                 <!--Login and Register forms -->
                 <ul class="navbar-nav">
-                    
+
                     <% if (!currentUser) { %>
                         <li class="<%= pageTitle == 'Login' ? 'navbar-item active' : 'navbar-item' %>">
                             <a href="/login" class="nav-link"><i class="fas fa-user"></i> Login</a>
                         </li>
-                        
+
                         <li class="<%= pageTitle == 'Register' ? 'navbar-item active' : 'navbar-item' %>">
                             <a href="/register" class="nav-link" id='registerBtn'><i class="fas fa-user-plus"></i> Signup</a>
                         </li>
                     <% } else { %>
                         <li class="navbar-item">
                             <a href='/logout' class='nav-link'><i class="fas fa-sign-out-alt"></i> Logout</a>
-                        </li>                    
+                        </li>
                     <% } %>
 
                 </ul>
             </div>
-        
+
         </nav>
