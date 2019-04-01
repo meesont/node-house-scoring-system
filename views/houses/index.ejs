@@ -1,26 +1,31 @@
 <% include ../partials/header %>
 
 <div class="container-fluid">
-    <h1 class='h1-responsive'>Houses</h1>
+    <h1 class='display-3'>Houses</h1>
 
-    <% houses.forEach(function(house, index){ %>
-        <div class="row">
-            <div class="col-md-12" style='margin-bottom: 20px;'>
-                <div class="card" style=''>
-                    <div class="card-header" style='background: <%= house.colour %>;'>
-                        <h4><%= house.name %><span class='float-right'>#<%= index+1 %></span></h4>
-                    </div>
-                    <div class="card-body">
-                        <!-- <p class='lead'><%= house.houseMaster %></p>
-                        <p class='lead'><%= house.email %></p> -->
+    <div class="accordian">
+        <% houses.forEach(function(house, index){ %>
+            <div class="row">
+                <div class="col-md-12" style='margin-bottom: 20px;'>
+                    <div class="card">
+                        <div class="card-header" style='background: <%= house.colour %>;'>
+                            <h3 class='h3-responsive' ><%= house.name %><a class='float-right' href='#<%= house.name %>' data-toggle='collapse' aria-expanded='false' aria-controls='<%= house.name %>'>#<%= index+1 %></a></h3>
+                        </div>
+                        <div id="<%= house.name %>" class='collapse'>
+                            <div class="card-body">
 
-                        <a class='btn btn-primary' href='/houses/<%= house._id %>'>View More</a>
+                                <p class='lead'>Points - <%= house.totalPoints %></p>
+                                <p></p>
+                                <p></p>
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <% }); %>
+        <% }); %>
+    </div>
+
 
 </div>
 
