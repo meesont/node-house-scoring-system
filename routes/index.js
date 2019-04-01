@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
  * @Last modified by:   Tom
- * @Last modified time: 31-03-2019
+ * @Last modified time: 01-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -22,7 +22,7 @@ const express = require('express'),
     User = require('../models/user'),
     passport = require('passport');
 
-const loginToken = (process.env.LOGINTOKEN || '9NQBmSuw6qK8zpxJII60dqJIDLACQ0yJwmQhWvpdjCZ26sLvqi');
+const loginToken = '9NQBmSuw6qK8zpxJII60dqJIDLACQ0yJwmQhWvpdjCZ26sLvqi';
 
 // home route
 router.get('/', function(req, res) {
@@ -55,7 +55,7 @@ router.get('/login', function(req, res) {
 router.post('/login', passport.authenticate('local',
     {
         successRedirect: '/hidden',
-        failureRedirect: '/incorrectDetails'
+        failureRedirect: '/error/incorrectDetails'
     }), function(req, res){
 
 });
@@ -78,7 +78,7 @@ router.post('/register', function(req, res){
             });
         });
     } else {
-        return res.redirect('/register/incorrectToken');
+        return res.redirect('/error/incorrectToken');
     }
 
 });
@@ -89,8 +89,12 @@ router.get('/logout', function(req, res) {
 });
 
 // =================
-// ERROR AND DEFAULT
+// TEST AND DEFAULT
 // =================
+
+router.get('/test', function(req, res){
+    res.render('test', {pageTitle: 'Test Route'});
+});
 
 router.get('/*', function(req, res){
     res.render('errors/error', {pageTitle: 'Error'});
@@ -103,5 +107,5 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
-module.exports.loginToken = loginToken;
+// module.exports.loginToken = loginToken;
 module.exports = router;
