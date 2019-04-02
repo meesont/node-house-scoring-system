@@ -78,7 +78,7 @@ app.use(function(req, res, next){
 
 app.use('/events', eventRoutes);
 app.use('/houses', houseRoutes);
-app.use(errorRoutes);
+app.use('/error', errorRoutes);
 app.use(indexRoutes);
 
 // ========================

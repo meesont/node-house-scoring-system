@@ -55,7 +55,7 @@ const express = require('express'),
 // These routes all have the prefix /error/<route>. This is not shown here because
 // the prefix is defined within the main node file when importing the exported router
 // module
-router.get('/error/incorrectToken', function(req, res) {
+router.get('/incorrectToken', function(req, res) {
     // the res.render method sends an EJS template as a response to the request
     // This EJS template is then rendered and any values are provided within the trailing
     // parameter and are provided as an object.
@@ -63,15 +63,15 @@ router.get('/error/incorrectToken', function(req, res) {
     res.render('errors/incorrectToken', {pageTitle: 'Incorrect Token'});
 });
 
-router.get('/error/incorrectDetails', function(req, res) {
+router.get('/incorrectDetails', function(req, res) {
     res.render('errors/incorrectDetails', {pageTitle: 'Incorrect Details'});
 });
 
-router.get('/error/notAuthenticated', function(req, res) {
+router.get('/notAuthenticated', function(req, res) {
     res.render('errors/notAuthenticated', {pageTitle: 'Not Authenticated'});
 });
 
-router.get('/error', function(req, res) {
+router.get('/', function(req, res) {
     res.render('errors/error', {pageTitle: 'Error'});
 });
 
