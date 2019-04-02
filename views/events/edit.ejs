@@ -1,43 +1,112 @@
 <% include ../partials/header %>
 
+<div class="container">
+    <h1 class='text-center'>Edit <%= event.name %> </h1>
 
-<div class='container'>
-    <div class='row'>
-        <h1 class='text-center'>Edit <%= event.name %></h1>
-
-        <div style='width: 40%; margin: 25px auto;'>
-            <form action='/events/<%= event._id %>?_method=PUT' method='POST'>
-
-                <div class='form-group'>
-
-                    <label for='name'>event Name</label>
-                    <input type='text' name='event[name]' value='<%= event.name %>' class='form-control'>
-
-                </div>
-                <div class='form-group'>
-
-                    <label for='imageUrl'>Image URL</label>
-                    <input type='text' name='event[imageUrl]' value='' class='form-control'>
+    <form action="/events/<%= event._id %>?_method=PUT" method="POST">
 
 
-                </div>
-
-                <div class='form-group'>
-                    <label for='description'>event Description</label>
-                    <input type='text' name='event[description]' value='' class='form-control'>
-                </div>
-
-                <div class='form-group'>
-                    <button class='btn btn-lg btn-success btn-block'>Submit!</button>
-                </div>
-
-
-            </form>
-
-            <a href='/events'>Return to events</a>
+        <div class='md-form mb-5'>
+            <label for='name'>Event Name</label>
+            <input type='text' id='name' name='event[name]' class='form-control' value='<%= event.name %>'>
 
         </div>
-    </div>
+
+        <div class='md-form mb-5'>
+            <label for='event[date]'>Event Date</label>
+            <input type='text' name='event[date]' class='form-control' value='<%= eventDate %>' disabled>
+        </div>
+
+
+        <div class='md-form mb-5'>
+            <label for='winner'>Winner</label>
+
+            <select class="form-control" name="event[winner]" id='winner'>
+                <option <%=event.winner == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
+                <option <%=event.winner == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
+                <option <%=event.winner == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
+                <option <%=event.winner == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
+            </select>
+
+        </div>
+
+        <div class='md-form mb-5'>
+            <label for="firstPoints">Winner Points</label>
+            <input type="number" id="firstPoints" name='event[firstPoints]' class="form-control" value='<%= event.firstPoints %>'>
+
+        </div>
+
+
+        <div class='md-form mb-5'>
+            <label for='runnerUp'>Runner Up</label>
+
+            <select class="form-control" name="event[runnerUp]" id='runnerUp' required>
+                <option <%=event.runnerUp == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
+                <option <%=event.runnerUp == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
+                <option <%=event.runnerUp == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
+                <option <%=event.runnerUp == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
+            </select>
+        </div>
+
+        <div class='md-form mb-5'>
+            <label for="secondPoints">Runner Up Points</label>
+            <input type="number" id="secondPoints" name='event[secondPoints]' class="form-control" value='<%= event.secondPoints %>'>
+
+        </div>
+
+
+        <div class='md-form mb-5'>
+            <label for='third'>Third Place</label>
+
+            <select class="form-control" name="event[third]" id='third' required>
+                <option <%=event.third == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
+                <option <%=event.third == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
+                <option <%=event.third == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
+                <option <%=event.third == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
+            </select>
+        </div>
+
+
+        <div class='md-form mb-5'>
+            <label for="thirdPoints">Third Place Points</label>
+            <input type="number" id="thirdPoints" name='event[thirdPoints]' class="form-control" value="<%= event.thirdPoints %>">
+
+        </div>
+
+
+        <div class='md-form mb-5'>
+            <label for='fourth'>Fourth Place</label>
+
+            <select class="form-control" name="event[fourth]" id='fourth' required>
+                <option <%=event.fourth == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
+                <option <%=event.fourth == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
+                <option <%=event.fourth == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
+                <option <%=event.fourth == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
+            </select>
+
+        </div>
+
+        <div class='md-form mb-5'>
+            <label for="fourthPoints">Fourth Place Points</label>
+            <input type="number" id="fourthPoints" name='event[fourthPoints]' class="form-control" value="<%= event.fourthPoints %>">
+
+        </div>
+
+        <!-- <input type="submit" value="Update post" class='btn btn-lg btn-success'> -->
+        <input type='submit' value='Update <%= event.name %>' class='btn btn-lg btn-success'>
+        <a href='/events/<%= event._id %>' class='btn btn-lg btn-danger'>Cancel</a>
+
+    </form>
+
 </div>
 
 <% include ../partials/footer %>
+<%#
+firstPoints: Number,
+secondPoints: Number,
+thirdPoints: Number,
+fourthPoints: Number,
+winner: String,
+runnerUp: String,
+third: String,
+fourth: String %>

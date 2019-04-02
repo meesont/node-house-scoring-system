@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
  * @Last modified by:   Tom
- * @Last modified time: 01-04-2019
+ * @Last modified time: 02-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -76,16 +76,24 @@ router.get('/:id/edit', function(req, res) {
             console.log(err);
             res.redirect('/error');
         } else {
-            res.render('events/edit', {pageTitle: 'Edit Event', event: event});
+            // res.send(event.date);
+            // "2019-03-13T00:00:00.000Z"
+            var evtDate = new Date(event.date);
+            res.render('events/edit', {pageTitle: 'Edit Event', event: event, eventDate: evtDate});
         }
     });
 });
 
 router.put('/:id', function(req, res){
     Event.findByIdAndUpdate(req.params.id, req.body.event, function(err, updatedEvent){
-        
-    })
-})
+        if(err) {
+            console.log(err);
+            res.redirect('/error');
+        } else {
+            res.redirect('/events/' + req.params.id);
+        }
+    });
+});
 
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()){
