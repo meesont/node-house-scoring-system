@@ -18,6 +18,8 @@ limitations under the License.
  */
 
 
+// This model follows the same format as the event.js model, with very slight differences
+
 var mongoose = require("mongoose");
 
 /*
@@ -32,7 +34,10 @@ var houseSchema = new mongoose.Schema({
     email: String,
     totalPoints: Number,
     colour: String,
-    events: [
+    events: [ // The only difference in this file is that there is an object reference within the file
+              // This object reference allows me to link an array of events to the house
+              // and therefore render the events for each house if needed
+              // Source: https://docs.mongodb.com/manual/reference/database-references/
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Event'

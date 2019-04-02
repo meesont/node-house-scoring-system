@@ -18,8 +18,19 @@ limitations under the License.
  */
 
 
+// This model follows the same format as the event.js model, with very slight differences
+
+
+// A slight change occurs within this file, because this file will be used to store passwords
+// a libary called passport-local-mongoose is imported as a module which saves me working on manual
+// password hashing which may create insecurities
 var mongoose = require("mongoose"),
     passportLocalMongoose = require("passport-local-mongoose");
+
+// In this instance, passport-local-mongoose creates a username, hash and salt field for us
+// these fields are used to authenticate users and store passwords securely
+// passport-local-mongoose also adds some methods to the schema, that are used for
+// checking that users are authenticated and setting/changing passwords
 
 var userSchema = new mongoose.Schema({
     username: String,
@@ -27,6 +38,8 @@ var userSchema = new mongoose.Schema({
     // isAdmin: {type: Boolean, default: false}
 });
 
+// passport-local-mongoose is a plugin for schemas, that adds functionality
+// and extend the base setup and design of a schema
 userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', userSchema);

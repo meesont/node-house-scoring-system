@@ -17,13 +17,23 @@ limitations under the License.
  * @Copyright: Copyright(c) 2018 Thomas Meeson
  */
 
-var mongoose = require("mongoose");
 
+// This line imports the module mongoose (that was provided by NPM) as a constant
+// This is the reverse of module.exports
+const mongoose = require("mongoose");
+
+
+// This is where I am defining a new Schema, a schema is a contstructor provided by mongoose in order to template a new model
+// A model is a template for a document (documents are the MongoDB equivilent of Records), documents are then contained within a collection
+// A collection is a grouping of MongoDB documents, the NoSQL equivilent of a table
+// The whole schema is defined within a JavaScript object and contains nested objects
+// Each of the positons (first, second, third, fourth) is an object nested within the parent object schema
+// Source: https://docs.mongodb.com/manual/reference/glossary/
 var eventsSchema = new mongoose.Schema({
-   name: String,
-   date: Date,
+   name: String, // The event name, with data type String
+   date: Date, // Date with data type Date
    first: {
-       points: Number,
+       points: Number, // The points with data type Number
        house: String
    },
    second: {
@@ -39,37 +49,12 @@ var eventsSchema = new mongoose.Schema({
        house: String
    }
 });
-// var eventsSchema = new mongoose.Schema({
-//    name: String,
-//    date: Date,
-//    first: {
-//        points: Number,
-//        house: {
-//            type: mongoose.Schema.Types.ObjectId,
-//            ref: 'House'
-//        }
-//    },
-//    second: {
-//        points: Number,
-//        house: {
-//            type: mongoose.Schema.Types.ObjectId,
-//            ref: 'House'
-//        }
-//    },
-//    third: {
-//        points: Number,
-//        house: {
-//            type: mongoose.Schema.Types.ObjectId,
-//            ref: 'House'
-//        }
-//    },
-//    fourth: {
-//        points: Number,
-//        house: {
-//            type: mongoose.Schema.Types.ObjectId,
-//            ref: 'House'
-//        }
-//    }
-// });
 
+// The module.exports line is required to export this schema model as a module
+// In this instance I have compacted the mongoose.model inside the export, whereas this can often be done seperately.
+// EXAMPLE OF SEPERATION
+    // const model = mongoose.model('Event', eventsSchema);
+    // module.exports = model;
+// This is simply compacted into a single line
+// Source: https://www.tutorialsteacher.com/nodejs/nodejs-module-exports
 module.exports = mongoose.model('Event', eventsSchema);
