@@ -14,9 +14,9 @@
                         <div id="<%= house.name %>" class='collapse'>
                             <div class="card-body">
 
-                                <p class='lead'>Points - <%= house.totalPoints %></p>
-                                <p></p>
-                                <p></p>
+                                <p><strong>Points</strong> - <%= house.totalPoints %></p>
+                                <p><strong>House Master</strong> - <%= house.houseMaster %></p>
+                                <p><strong>Contact</strong> - <a href="mailto:<%= house.email %>?subject=Question for houseMaster"><%= house.email %></a></p>
 
                             </div>
                         </div>
