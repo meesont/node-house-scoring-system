@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
  * @Last modified by:   Tom
- * @Last modified time: 01-04-2019
+ * @Last modified time: 02-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -54,7 +54,7 @@ router.get('/login', function(req, res) {
 
 router.post('/login', passport.authenticate('local',
     {
-        successRedirect: '/hidden',
+        successRedirect: '/events',
         failureRedirect: '/error/incorrectDetails'
     }), function(req, res){
 
@@ -74,7 +74,8 @@ router.post('/register', function(req, res){
                 return res.render('errors/error', {pageTitle: 'Error'});
             }
             passport.authenticate('local')(req, res, function(){
-                res.redirect('/hidden');
+                // res.redirect('/hidden');
+                res.redirect('/events');
             });
         });
     } else {
