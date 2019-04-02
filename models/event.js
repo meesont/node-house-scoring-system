@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
  * @Last modified by:   Tom
- * @Last modified time: 31-03-2019
+ * @Last modified time: 02-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -20,18 +20,38 @@ limitations under the License.
 
 var mongoose = require("mongoose");
 
+// var eventsSchema = new mongoose.Schema({
+//    name: String,
+//    firstPoints: Number,
+//    secondPoints: Number,
+//    thirdPoints: Number,
+//    fourthPoints: Number,
+//    date: Date,
+//    winner: String,
+//    runnerUp: String,
+//    third: String,
+//    fourth: String
+// });
+
 var eventsSchema = new mongoose.Schema({
    name: String,
-   firstPoints: Number,
-   secondPoints: Number,
-   thirdPoints: Number,
-   fourthPoints: Number,
    date: Date,
-   winner: String,
-   runnerUp: String,
-   third: String,
-   fourth: String
+   first: {
+       points: Number,
+       house: String
+   },
+   second: {
+       points: Number,
+       house: String
+   },
+   third: {
+       points: Number,
+       house: String
+   },
+   fourth: {
+       points: Number,
+       house: String
+   }
 });
-
 
 module.exports = mongoose.model('Event', eventsSchema);
