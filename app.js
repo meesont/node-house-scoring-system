@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
  * @Last modified by:   Tom
- * @Last modified time: 01-04-2019
+ * @Last modified time: 02-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -46,7 +46,7 @@ app.use(methodOverride('_method'));
 
 //DATABASE STUFF
 
-mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/house_scoring_sys', {useNewUrlParser: true , useFindAndModify: false});
 
 // seedDB();
 
