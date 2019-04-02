@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
  * @Last modified by:   Tom
- * @Last modified time: 31-03-2019
+ * @Last modified time: 02-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -75,19 +75,14 @@ function seedDB(){
                              if(err){
                                  console.log(err);
                              } else {
-                                 console.log('created house');
 
                                  Event.create({
                                      name: 'Football',
-                                     firstPoints: 10,
-                                     secondPoints: 5,
-                                     thirdPoints: 3,
-                                     fourthPoints: 2,
                                      date: new Date("2019-03-13T00:00:00Z"),
-                                     winner: 'Wylde',
-                                     runnerUp: 'Whiteladies',
-                                     third: 'Elgar',
-                                     fourth: 'Ottley'
+                                     first: {points: 10, house: 'Wylde'},
+                                     second: {points: 5, house: 'Whiteladies'},
+                                     third: {points: 3, house: 'Ottley'},
+                                     fourth: {points: 1, house: 'Elgar'}
                                  }, function(err, event){
                                      if(err) {
                                          console.log(err);
@@ -98,7 +93,7 @@ function seedDB(){
                                                  console.log(err);
                                              } else {
                                                  console.log('created event');
-                                                 console.log(house);
+                                                 console.log('');
                                                  console.log(event);
                                              }
                                          });
@@ -113,6 +108,38 @@ function seedDB(){
         }
     });
 }
+
+/*
+console.log('created house');
+
+Event.create({
+    name: 'Football',
+    firstPoints: 10,
+    secondPoints: 5,
+    thirdPoints: 3,
+    fourthPoints: 2,
+    date: new Date("2019-03-13T00:00:00Z"),
+    winner: 'Wylde',
+    runnerUp: 'Whiteladies',
+    third: 'Elgar',
+    fourth: 'Ottley'
+}, function(err, event){
+    if(err) {
+        console.log(err);
+    } else {
+        house.events.push(event);
+        house.save(function(err){
+            if(err){
+                console.log(err);
+            } else {
+                console.log('created event');
+                console.log(house);
+                console.log(event);
+            }
+        });
+    }
+});
+*/
 
 // function seedUserDB(){
 //     User.deleteMany({}, function(err){
@@ -137,21 +164,5 @@ function seedDB(){
 // }
 
 module.exports = seedDB;
-
 /*
-- delete all data in all collections
-- Event
-- House
-- Member
-- use data to seed dbs
-- create
-
-var eventsSchema = new mongoose.Schema({
-   name: String,
-   firstPlacePoints: Number,
-   runnerUpPoints: Number,
-   date: Date,
-   winner: String,
-   runnerUp: String
-});
 */

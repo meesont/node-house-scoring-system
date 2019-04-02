@@ -15,8 +15,8 @@
                     <h4 class='card-title'><%= event.name %></h4>
 
                     <p class='card-text'>Date - <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %></p>
-                    <p class='card-text lead' style='color: gold;'>Winner - <%= event.winner %></p>
-                    <p class='card-text' style='color: silver;'>Runner Up - <%= event.runnerUp %></p>
+                    <p class='card-text lead' style='color: gold;'>Winner - <%= event.first.house %></p>
+                    <p class='card-text' style='color: silver;'>Runner Up - <%= event.second.house %></p>
 
                     <a class='btn btn-block btn-primary' href='/events/<%= event._id %>'>View More</a>
 

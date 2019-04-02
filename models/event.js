@@ -17,21 +17,7 @@ limitations under the License.
  * @Copyright: Copyright(c) 2018 Thomas Meeson
  */
 
-
 var mongoose = require("mongoose");
-
-// var eventsSchema = new mongoose.Schema({
-//    name: String,
-//    firstPoints: Number,
-//    secondPoints: Number,
-//    thirdPoints: Number,
-//    fourthPoints: Number,
-//    date: Date,
-//    winner: String,
-//    runnerUp: String,
-//    third: String,
-//    fourth: String
-// });
 
 var eventsSchema = new mongoose.Schema({
    name: String,
@@ -53,5 +39,37 @@ var eventsSchema = new mongoose.Schema({
        house: String
    }
 });
+// var eventsSchema = new mongoose.Schema({
+//    name: String,
+//    date: Date,
+//    first: {
+//        points: Number,
+//        house: {
+//            type: mongoose.Schema.Types.ObjectId,
+//            ref: 'House'
+//        }
+//    },
+//    second: {
+//        points: Number,
+//        house: {
+//            type: mongoose.Schema.Types.ObjectId,
+//            ref: 'House'
+//        }
+//    },
+//    third: {
+//        points: Number,
+//        house: {
+//            type: mongoose.Schema.Types.ObjectId,
+//            ref: 'House'
+//        }
+//    },
+//    fourth: {
+//        points: Number,
+//        house: {
+//            type: mongoose.Schema.Types.ObjectId,
+//            ref: 'House'
+//        }
+//    }
+// });
 
 module.exports = mongoose.model('Event', eventsSchema);
