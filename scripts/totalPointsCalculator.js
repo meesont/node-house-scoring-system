@@ -21,7 +21,7 @@ const mongoose = require('mongoose')
     House = require('../models/house'),
     Event = require('../models/event');
 
-function calculatePoints(houses) {
+function calculatePoints() {
 
     /*
     from each event
@@ -34,28 +34,51 @@ function calculatePoints(houses) {
     get points gained from that position in each event
     */
 
-    // House.find({}, function(err, houses){
-    //     if(err){
-    //         console.log(err);
-    //         return;
-    //     } else {
-    //         houses.forEach(function(house){
-    //             if(Event.find({first.name: house}).contains, function(err, foundEvent){
+    // if (id.match(/^[0-9a-fA-F]{24}$/)) {
     //
-    //             });
-    //         });
-    //     }
-    // });
-    var totalPointsWylde = 0,
-        totalPointsWhiteladies = 0,
-        totalPointsElgar = 0,
-        totalPointsOttley = 0;
+    // }
 
-    houses.forEach(function(house){
-        Event.find({},)
+
+    // Source: https://mongoosejs.com/docs/queries.html
+
+    Event.find({'first.points': "$all"}).populate('first').exec(function(err, events){
+        if(err){
+            console.log(err);
+            console.log(events);
+        } else {
+            console.log('===============================');
+            console.log(events);
+            console.log('===============================');
+
+        }
     });
-
-
 }
 
 module.exports = calculatePoints;
+
+
+// var totalPointsWylde = 0,
+//     totalPointsWhiteladies = 0,
+//     totalPointsElgar = 0,
+//     totalPointsOttley = 0;
+//
+// houses.forEach(function(house){
+//     Event.find({}).populate('first').exec(function(err, events){
+//
+//         events.forEach(function(event){
+//
+//         });
+//
+//         if(house == events.first.house){
+//             house.totalPoints += events.first.points;
+//         } else {
+//             continue;
+//         }
+//     });
+//
+//     Event.find({}).populate('second').exec(function(err, events){
+//         if(house == second.house){
+//             house.totalPoints += events.second.points;
+//         }
+//     })
+// });

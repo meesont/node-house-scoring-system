@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
  * @Last modified by:   Tom
- * @Last modified time: 02-04-2019
+ * @Last modified time: 03-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -32,7 +32,8 @@ const express = require("express"), //This defines the requirement for express
     House = require("./models/house"),
     User = require("./models/user"),
     LocalStrategy = require("passport-local"),
-    seedDB = require("./seeds");
+    seedDB = require("./seeds"),
+    pointsCalculator = require('./scripts/totalPointsCalculator');
 
 const eventRoutes = require('./routes/events'),
     indexRoutes = require('./routes/index'),
@@ -71,6 +72,13 @@ app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     next();
 });
+
+// ========================
+// TESTING
+// ========================
+
+pointsCalculator();
+
 
 // ========================
 // ROUTES IMPORT
