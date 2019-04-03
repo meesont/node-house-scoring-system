@@ -52,7 +52,7 @@ function calculatePoints(houses) {
         totalPointsOttley = 0;
 
     houses.forEach(function(house){
-        Event.find({})
+        Event.find({},)
     });
 
 
