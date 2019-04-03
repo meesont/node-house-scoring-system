@@ -18,7 +18,7 @@ limitations under the License.
  */
 
 
-/*Class to edit the current bootstrap colours and features, */
+/* Stylesheet to edit the current bootstrap colours and features, */
 
 .btn-primary.btn-custom { /* create a custom green button for use with bootstrap */
   background-color: #275c48;
@@ -56,9 +56,3 @@ limitations under the License.
   background-color: #e9ecef;
   border-radius: .3rem;
 }
-
-/*.nav-item:hover {*/
-/*  background-color: #014a37;*/
-/*  height: 100%;*/
-/*  border-radius: 10px;*/
-/*}*/
