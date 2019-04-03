@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
  * @Last modified by:   Tom
- * @Last modified time: 31-03-2019
+ * @Last modified time: 03-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -17,10 +17,15 @@ limitations under the License.
  * @Copyright: Copyright(c) 2018 Thomas Meeson
  */
 
+/* This stylesheet is defined for my own classes and ID's that needed styling within the project on top of
+the bootstraps styling that already exists */
 
-body {
+body { /* This body selector fixes an issue where the navbar overlaps with the main content of the page */
     padding-top: 70px;
 }
+
+/* The mainFrame and sideFrame styling are used for when I was trying to template out
+the bootstrap grid */
 
 .mainFrame {
     color: white;
@@ -39,6 +44,8 @@ body {
     padding: 20px 0;
 }
 
+/* This footer selector is used to fix the footer tag to the bottom of the page, and to make sure it
+fills the entirty of the container that it is placed within (in this case the container is body) */
 footer {
     position: fixed;
     /*height: 100px;*/
@@ -46,28 +53,43 @@ footer {
     width: 100%;
 }
 
+/* The #newEventBtn selector is used to select a specific button that is used to add new
+events to the events route, and it is a 'fixed' or 'sticky' button that will not move from the
+botttom right hand corner of the page, this ID does not reference the button, rather the div
+container that the button is the child of */
 #newEventBtn {
     position: fixed;
     bottom: 40px;
     right: 20px;
 }
 
+/* #modalActivate links to the actual button that is used to expose the modal, the border-radius
+CSS property adds a rounded corner finish onto the button */
 #modalActivate {
-    border-radius: 10px !important;
+    border-radius: 10px !important; /* !important is required here as the button styles
+                                       are otherwise overwritten by the bootstrap classes */
 }
 
+/* this padding fix class is used within the events index template to ensure that the title appears
+more centralised and does not overlap */
 .paddingFix {
     padding-top: 10px;
 }
 
+/* Both nav-positions and nav-scores are ID's used within the events show template, and are used
+for the tabs, the 10px padding fixes some issues with the tabs overlapping ect. */
 #nav-positions, #nav-scores {
     padding: 10px;
 }
 
+/* This leaderboard-item selector is used too change the font size on the leaderboards index template,
+it functions as a fallback for if any issue was to arrise with the ID selectors */
 .leaderboard-item {
     font-size: 20px;
 }
 
+/* The first-place, second-place and third-place selectors are used to set fonts for each of the
+first, second and third place on the leaderboard */
 #first-place{
     font-size: 45px;
 }
