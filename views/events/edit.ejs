@@ -1,17 +1,54 @@
+<!--
+@Author: Thomas Meeson <thomas>
+@Date:   05-04-2019
+@Last modified by:   thomas
+@Last modified time: 05-04-2019
+@License: Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+@Copyright: Copyright(c) 2018 Thomas Meeson
+-->
+
+
 <% include ../partials/header %>
 
 
 <!--
+The edit event template is a form which autofills with data that is gained from the database and relates
+to the event which is currently being edited, it is contained within a container which makes the page
+layout better.
 -->
 
 <div class="container">
     <h1 class='text-center'>Edit <%= event.name %> </h1>
 
-    <form action="/events/<%= event._id %>?_method=PUT" method="POST">
+    <!--
+    Here we see the use of the method-override package, it is used to allow us to use the other kind of
+    RESTful routes, in this case, PUT. HTML5 only supports the POST and GET routes as of current, so therefore
+    a middleware must be used to allow us to use the other methods that are avalible; method-override allows
+    this to happen.
 
+    It sends the action to a route where there is a ?_method=PUT on the end, this means that the method
+    that Express detects is PUT, and allows us to catch this PUT request within our routes files.
+    -->
+    <form action="/events/<%= event._id %>?_method=PUT" method="POST">
 
         <div class='md-form mb-5'>
             <label for='name'>Event Name</label>
+
+            <!--
+            This form is identical to the modal form that appears on the index page, however this time there is a value assigned to each
+            of the inputs, and this value is set equal to that of the value that is stored as an attribute inside the document that is
+            being edited.
+            -->
             <input type='text' id='name' name='event[name]' class='form-control' value='<%= event.name %>'>
 
         </div>
@@ -25,18 +62,23 @@
         <div class='md-form mb-5'>
             <label for='winner'>Winner</label>
 
-            <select class="form-control" name="event[winner]" id='winner'>
-                <option <%=event.winner == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
-                <option <%=event.winner == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
-                <option <%=event.winner == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
-                <option <%=event.winner == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
+            <select class="form-control" name="event[first.house]" id='winner'>
+                <!--
+                An EJS statement is used here to add the selected attribute. It is a ternary operator that checks to see if the current
+                event's first place house is equal to the value that is given to the option, if it is, then the ternary operator adds the
+                selected class to the option tag; else, it adds nothing.
+                -->
+                <option <%=event.first.house == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
+                <option <%=event.first.house == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
+                <option <%=event.first.house == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
+                <option <%=event.first.house == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
             </select>
 
         </div>
 
         <div class='md-form mb-5'>
             <label for="firstPoints">Winner Points</label>
-            <input type="number" id="firstPoints" name='event[firstPoints]' class="form-control" value='<%= event.firstPoints %>'>
+            <input type="number" id="firstPoints" name='event[first.points]' class="form-control" value='<%= event.first.points %>'>
 
         </div>
 
@@ -44,17 +86,17 @@
         <div class='md-form mb-5'>
             <label for='runnerUp'>Runner Up</label>
 
-            <select class="form-control" name="event[runnerUp]" id='runnerUp' required>
-                <option <%=event.runnerUp == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
-                <option <%=event.runnerUp == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
-                <option <%=event.runnerUp == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
-                <option <%=event.runnerUp == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
+            <select class="form-control" name="event[second.house]" id='runnerUp' required>
+                <option <%=event.second.house == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
+                <option <%=event.second.house == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
+                <option <%=event.second.house == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
+                <option <%=event.second.house == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
             </select>
         </div>
 
         <div class='md-form mb-5'>
             <label for="secondPoints">Runner Up Points</label>
-            <input type="number" id="secondPoints" name='event[secondPoints]' class="form-control" value='<%= event.secondPoints %>'>
+            <input type="number" id="secondPoints" name='event[second.points]' class="form-control" value='<%= event.second.points %>'>
 
         </div>
 
@@ -62,18 +104,18 @@
         <div class='md-form mb-5'>
             <label for='third'>Third Place</label>
 
-            <select class="form-control" name="event[third]" id='third' required>
-                <option <%=event.third == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
-                <option <%=event.third == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
-                <option <%=event.third == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
-                <option <%=event.third == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
+            <select class="form-control" name="event[third.house]" id='third' required>
+                <option <%=event.third.house == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
+                <option <%=event.third.house == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
+                <option <%=event.third.house == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
+                <option <%=event.third.house == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
             </select>
         </div>
 
 
         <div class='md-form mb-5'>
             <label for="thirdPoints">Third Place Points</label>
-            <input type="number" id="thirdPoints" name='event[thirdPoints]' class="form-control" value="<%= event.thirdPoints %>">
+            <input type="number" id="thirdPoints" name='event[third.points]' class="form-control" value="<%= event.third.points %>">
 
         </div>
 
@@ -81,22 +123,24 @@
         <div class='md-form mb-5'>
             <label for='fourth'>Fourth Place</label>
 
-            <select class="form-control" name="event[fourth]" id='fourth' required>
-                <option <%=event.fourth == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
-                <option <%=event.fourth == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
-                <option <%=event.fourth == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
-                <option <%=event.fourth == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
+            <select class="form-control" name="event[fourth.house]" id='fourth' required>
+                <option <%=event.fourth.house == 'Wylde' ? 'selected' : ''%> value="Wylde">Wylde</option>
+                <option <%=event.fourth.house == 'Whiteladies' ? 'selected' : ''%> value="Whiteladies">Whiteladies</option>
+                <option <%=event.fourth.house == 'Elgar' ? 'selected' : ''%> value="Elgar">Elgar</option>
+                <option <%=event.fourth.house == 'Ottley' ? 'selected' : ''%> value="Ottley">Ottley</option>
             </select>
 
         </div>
 
         <div class='md-form mb-5'>
             <label for="fourthPoints">Fourth Place Points</label>
-            <input type="number" id="fourthPoints" name='event[fourthPoints]' class="form-control" value="<%= event.fourthPoints %>">
+            <input type="number" id="fourthPoints" name='event[fourth.points]' class="form-control" value="<%= event.fourth.points %>">
 
         </div>
 
-        <!-- <input type="submit" value="Update post" class='btn btn-lg btn-success'> -->
+        <!--
+        When the user is done editing, they can update the event and will be redirected to the event show page 
+        -->
         <input type='submit' value='Update <%= event.name %>' class='btn btn-lg btn-success'>
         <a href='/events/<%= event._id %>' class='btn btn-lg btn-danger'>Cancel</a>
 

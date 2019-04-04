@@ -1,4 +1,32 @@
+<!--
+@Author: Thomas Meeson <thomas>
+@Date:   05-04-2019
+@Last modified by:   thomas
+@Last modified time: 05-04-2019
+@License: Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+@Copyright: Copyright(c) 2018 Thomas Meeson
+-->
+
+
 <% include ../partials/header %>
+
+<!--
+This template is used to display each individual event in more detail, these are templated so that each event
+has all its data shown on 2 tabs within the page. It is again contained within a fluid container with a minor
+inline style to fix some padding issues.
+
+It again includes the header and footer partials that are imported via EJS.
+-->
 
 <div class='container-fluid' style='padding: 20px;'>
 
@@ -9,6 +37,11 @@
         <div class='col-md-12'>
 
             <div class='thumbnail'>
+                <!--
+                The h1 of this page is simply the event name and date in the format 'Name - DD/MM/YYYY', below this there is a nav
+                created which has 2 tabs, one tab that shows the event positions and where the houses came, and another tab which
+                shows how many points each house was awarded for the event.
+                -->
                 <h1><%= event.name %> - <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %></h1>
 
                 <hr>
@@ -49,24 +82,5 @@
 
 </div>
 
-<!--<h1><%= event.name %></h1>-->
-
-
-
 
 <% include ../partials/footer %>
-
-
-
-<!--var eventsSchema = new mongoose.Schema({-->
-<!--   name: String,-->
-<!--   firstPoints: Number,-->
-<!--   secondPoints: Number,-->
-<!--   thirdPoints: Number,-->
-<!--   fourthPoints: Number,-->
-<!--   date: Date,-->
-<!--   winner: String,-->
-<!--   runnerUp: String,-->
-<!--   third: String,-->
-<!--   fourth: String-->
-<!--});-->
