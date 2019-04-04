@@ -193,8 +193,8 @@ function isLoggedIn(req, res, next) {
         // if the request is authenticated the middleware returns the next() method that is provided as a parameter
         return next();
     }
-    // If the request is not authenticated, the user is redirected to a page saying that they are not authenticated.
-    res.redirect('/error/notAuthenticated');
+    // If the request is not authenticated, the user is redirected to the login page.
+    res.redirect('/login');
 }
 
 
