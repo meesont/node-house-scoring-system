@@ -57,35 +57,84 @@ function calculatePoints() {
                     switch(house.name){
                         case 'Wylde':
 
-                            // console.log(house.totalPoints);
-
                             events.forEach(event => {
                                 // console.log(house.name + event);
 
                                 if(event.first.house == house.name){
-
+                                    wyldePoints += event.first.points;
+                                } else if (event.second.house == house.name) {
+                                    wyldePoints += event.second.points;
+                                } else if (event.third.house == house.name) {
+                                    wyldePoints += event.third.points;
+                                } else if (event.fourth.points == house.name) {
+                                    wyldePoints += event.fourth.points;
                                 }
 
                             });
 
                             break;
                         case 'Whiteladies':
-                            console.log(house.totalPoints);
+                            // console.log(house.totalPoints);
+
+                            events.forEach(event => {
+                                // console.log(house.name + event);
+                                if(event.first.house == house.name){
+                                    whiteladiesPoints += event.first.points;
+                                } else if (event.second.house == house.name) {
+                                    whiteladiesPoints += event.second.points;
+                                } else if (event.third.house == house.name) {
+                                    whiteladiesPoints += event.third.points;
+                                } else if (event.fourth.points == house.name) {
+                                    whiteladiesPoints += event.fourth.points;
+                                }
+
+                            });
+
                             break;
                         case 'Elgar':
-                            console.log(house.totalPoints);
+                            // console.log(house.totalPoints);
+
+                            events.forEach(event => {
+                                // console.log(house.name + event);
+                                if(event.first.house == house.name){
+                                    elgarPoints += event.first.points;
+                                } else if (event.second.house == house.name) {
+                                    elgarPoints += event.second.points;
+                                } else if (event.third.house == house.name) {
+                                    elgarPoints += event.third.points;
+                                } else if (event.fourth.points == house.name) {
+                                    elgarPoints += event.fourth.points;
+                                }
+
+                            });
+
                             break;
                         case 'Ottley':
-                            console.log(house.totalPoints);
+                            // console.log(house.totalPoints);
+
+                            events.forEach(event => {
+                                // console.log(house.name + event);
+                                if(event.first.house == house.name){
+                                    ottleyPoints += event.first.points;
+                                } else if (event.second.house == house.name) {
+                                    ottleyPoints += event.second.points;
+                                } else if (event.third.house == house.name) {
+                                    ottleyPoints += event.third.points;
+                                } else if (event.fourth.points == house.name) {
+                                    ottleyPoints += event.fourth.points;
+                                }
+
+                            });
+
                             break;
                     }
 
                 });
 
-                // console.log('first points ' + firstPoints);
-                // console.log('second points ' + secondPoints);
-                // console.log('third points ' + thirdPoints);
-                // console.log('fourth points ' + fourthPoints);
+                console.log('wylde points ' + wyldePoints);
+                console.log('whiteladies points ' + whiteladiesPoints);
+                console.log('elgar points ' + elgarPoints);
+                console.log('ottley points ' + ottleyPoints);
             });
         }
     });
