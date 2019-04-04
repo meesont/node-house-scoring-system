@@ -112,7 +112,7 @@ router.get('/:id', function(req, res) {
 
     // Source: https://stackoverflow.com/questions/5817795/how-are-mongodbs-objectids-generated
     // Source: https://stackoverflow.com/questions/4677237/possibility-of-duplicate-mongo-objectids-being-generated-in-two-different-colle
-    Event.findById(req.params.id, function(err, event) {
+    Event.findById(req.params.id, (err, event) => {
         if(err) {
             console.log(err);
             res.redirect('/error');
@@ -124,35 +124,76 @@ router.get('/:id', function(req, res) {
 });
 
 
-router.get('/:id/edit', function(req, res) {
-    Event.findById(req.params.id, function(err, event){
+// RESTful routing requires an edit route that contains the ID of the entity to be edited as a
+// paramater inside of the route. In this case the route will be /events/<ID given by mongoose>/edit
+// The edit route is simply a get request that renders a form that is specific to the event that
+// is provided inside the route parameter
+router.get('/:id/edit', isLoggedIn, (req, res) => {
+
+    // The => arrow function (AFs) is a JavaScript ES6 feature, and has advantages and disadvantages
+    // to begin with, AFs are always anonymous, making it difficult to debug software and also means that
+    // certain programming techniques such as recursion are not possible.
+
+    // I chose to use arrow functions for each callback as callback functions do not require recursion,
+    // should be simple and short, and only require 2 basic parameters
+
+    // Source: https://medium.freecodecamp.org/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26
+
+    // I am again using the findById Mongoose query, to find a specific event that is linked to an ID, howerver this time,
+    // a different file is being rendered to the user, with different parameters
+    Event.findById(req.params.id, (err, event) => {
         if(err){
             console.log(err);
             res.redirect('/error');
         } else {
-            // res.send(event.date);
             // "2019-03-13T00:00:00.000Z"
+
+            // When trying to render the date in the template from the event object, I was encountering issues as
+            // filling a form template was not possible as the date was being provided by the events object in a
+            // string format, which could not be interpreted by the form correctly.
+            // To counter this, I declare a variable called evtDate and then cast the string version of the date as
+            // a new date object, which can then successfully be rendred into the template.
             var evtDate = new Date(event.date);
             res.render('events/edit', {pageTitle: 'Edit Event', event: event, eventDate: evtDate});
         }
     });
 });
 
-router.put('/:id', function(req, res){
-    Event.findByIdAndUpdate(req.params.id, req.body.event, function(err, updatedEvent){
-        if(err) {
+// This uses another RESTful route, this time a PUT route, which is similar to a POST route.
+// It provides new data to the database and is provided this data by a form that is rendred from the GET request above
+// This put route specifically changes the data for the document selected by the ID route parameter
+router.put('/:id', isLoggedIn, (req, res) => {
+
+    // This query uses the findByIdAndUpdate method provided by Mongoose. This method is used to find a
+    // single document and then update the data contained within that document without wiping any data we
+    // do not wish to update or remove.
+
+    // req.params.id is the ID of the document that I am trying to lookup, req.body.event is the new
+    // data that is to be pushed into the document. A callback function follows these, which has the parameters
+    // err and updatedEvent
+
+    Event.findByIdAndUpdate(req.params.id, req.body.event, (err, updatedEvent) => {
+        if(err) { // error handling occurs here, an if statement checking if the value of error is truthy
             console.log(err);
-            res.redirect('/error');
+            res.redirect('/error'); // redirect to the error route if an error occurs
         } else {
+            // Nothing has to be done with the updatedEvent so therefore it simply redirects the user to the show
+            // page for the event that they were editing.
             res.redirect('/events/' + req.params.id);
         }
     });
 });
 
+// This function is refered to as 'Middleware' throughout the documentation of this project
+// this middleware uses a method added by passport-local that checks if a request is authenticated before
+// allowing the request to take place, the next parameter automatically identifies the next step in the cycle, and
+// is a function that is called when the request is authenticated.
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()){
+        // if the request is authenticated the middleware returns the next() method that is provided as a parameter
         return next();
     }
+    // If the request is not authenticated, the user is redirected to a page saying that they are not authenticated.
     res.redirect('/error/notAuthenticated');
 }
 
