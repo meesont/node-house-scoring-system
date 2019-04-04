@@ -1,8 +1,8 @@
 /**
  * @Author: Thomas Meeson <Tom>
  * @Date:   03-04-2019
- * @Last modified by:   Tom
- * @Last modified time: 03-04-2019
+ * @Last modified by:   thomas
+ * @Last modified time: 04-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -34,22 +34,52 @@ function calculatePoints() {
     get points gained from that position in each event
     */
 
-    // if (id.match(/^[0-9a-fA-F]{24}$/)) {
-    //
-    // }
-
 
     // Source: https://mongoosejs.com/docs/queries.html
-
-    Event.find({'first.points': "$all"}).populate('first').exec(function(err, events){
+    var firstPoints=secondPoints=thirdPoints=fourthPoints = 0;
+    Event.find({}, {'first': 1, 'second': 1, 'third':1, 'fourth': 1, '_id': 0}, (err, events) => {
         if(err){
             console.log(err);
-            console.log(events);
         } else {
-            console.log('===============================');
-            console.log(events);
-            console.log('===============================');
+            // console.log(events);
+            House.find({}, {'totalPoints': 1, 'name': 1, '_id': 0}, (err, houses) => {
 
+                // console.log(houses);
+
+                houses.forEach(house => {
+
+                    events.forEach(event => {
+
+                        switch(house.name){
+                            case 'Wylde':
+                                // DO SOMETHING
+                                break;
+                            case 'Whiteladies':
+                                // DO SOMETHING
+                                break;
+                            case 'Elgar':
+                                // DO SOMETHING
+                                break;
+                            case 'Ottley':
+                                // DO SOMETHING
+                                break;
+                        }
+
+                    })
+
+                })
+
+                events.forEach(event => {
+
+
+
+                });
+
+                console.log('first points ' + firstPoints);
+                console.log('second points ' + secondPoints);
+                console.log('third points ' + thirdPoints);
+                console.log('fourth points ' + fourthPoints);
+            });
         }
     });
 }
@@ -70,7 +100,7 @@ module.exports = calculatePoints;
 //         });
 //
 //         if(house == events.first.house){
-//             house.totalPoints += events.first.points;
+//             totalPoints += events.first.points;
 //         } else {
 //             continue;
 //         }
@@ -78,7 +108,7 @@ module.exports = calculatePoints;
 //
 //     Event.find({}).populate('second').exec(function(err, events){
 //         if(house == second.house){
-//             house.totalPoints += events.second.points;
+//             totalPoints += events.second.points;
 //         }
 //     })
 // });
