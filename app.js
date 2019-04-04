@@ -1,8 +1,8 @@
 /**
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
- * @Last modified by:   Tom
- * @Last modified time: 03-04-2019
+ * @Last modified by:   thomas
+ * @Last modified time: 04-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -68,7 +68,7 @@ passport.deserializeUser(User.deserializeUser());
 passport.use(new LocalStrategy(User.authenticate()));
 
 
-app.use(function(req, res, next){
+app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     next();
 });
@@ -95,7 +95,7 @@ app.use(indexRoutes);
 
 const port = 8080;
 
-app.listen(port, function(){
+app.listen(port, () => {
     console.log('House Scoring Sys v0.1-BETA');
     console.log('localhost:' + port);
     // console.log('LOGINTOKEN:' + loginToken);
