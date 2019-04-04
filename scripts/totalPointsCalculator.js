@@ -36,8 +36,14 @@ function calculatePoints() {
 
 
     // Source: https://mongoosejs.com/docs/queries.html
-    var firstPoints=secondPoints=thirdPoints=fourthPoints = 0;
-    Event.find({}, {'first': 1, 'second': 1, 'third':1, 'fourth': 1, '_id': 0}, (err, events) => {
+
+    var wyldePoints = 0,
+        ottleyPoints = 0,
+        elgarPoints = 0,
+        whiteladiesPoints = 0;
+
+
+    Event.find({}, {'name': 0, 'date': 0, '_id': 0}, (err, events) => {
         if(err){
             console.log(err);
         } else {
@@ -48,67 +54,41 @@ function calculatePoints() {
 
                 houses.forEach(house => {
 
-                    events.forEach(event => {
+                    switch(house.name){
+                        case 'Wylde':
 
-                        switch(house.name){
-                            case 'Wylde':
-                                // DO SOMETHING
-                                break;
-                            case 'Whiteladies':
-                                // DO SOMETHING
-                                break;
-                            case 'Elgar':
-                                // DO SOMETHING
-                                break;
-                            case 'Ottley':
-                                // DO SOMETHING
-                                break;
-                        }
+                            // console.log(house.totalPoints);
 
-                    })
+                            events.forEach(event => {
+                                // console.log(house.name + event);
 
-                })
+                                if(event.first.house == house.name){
 
-                events.forEach(event => {
+                                }
 
+                            });
 
+                            break;
+                        case 'Whiteladies':
+                            console.log(house.totalPoints);
+                            break;
+                        case 'Elgar':
+                            console.log(house.totalPoints);
+                            break;
+                        case 'Ottley':
+                            console.log(house.totalPoints);
+                            break;
+                    }
 
                 });
 
-                console.log('first points ' + firstPoints);
-                console.log('second points ' + secondPoints);
-                console.log('third points ' + thirdPoints);
-                console.log('fourth points ' + fourthPoints);
+                // console.log('first points ' + firstPoints);
+                // console.log('second points ' + secondPoints);
+                // console.log('third points ' + thirdPoints);
+                // console.log('fourth points ' + fourthPoints);
             });
         }
     });
 }
 
 module.exports = calculatePoints;
-
-
-// var totalPointsWylde = 0,
-//     totalPointsWhiteladies = 0,
-//     totalPointsElgar = 0,
-//     totalPointsOttley = 0;
-//
-// houses.forEach(function(house){
-//     Event.find({}).populate('first').exec(function(err, events){
-//
-//         events.forEach(function(event){
-//
-//         });
-//
-//         if(house == events.first.house){
-//             totalPoints += events.first.points;
-//         } else {
-//             continue;
-//         }
-//     });
-//
-//     Event.find({}).populate('second').exec(function(err, events){
-//         if(house == second.house){
-//             totalPoints += events.second.points;
-//         }
-//     })
-// });
