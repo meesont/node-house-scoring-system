@@ -1,8 +1,8 @@
 /**
  * @Author: Thomas Meeson <Tom>
  * @Date:   31-03-2019
- * @Last modified by:   Tom
- * @Last modified time: 03-04-2019
+ * @Last modified by:   thomas
+ * @Last modified time: 04-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -18,7 +18,7 @@ limitations under the License.
  */
 
 
-// This model follows the same format as the event.js model, with very slight differences
+// This model follows the same format as the event.js model, with very slight differences.
 
 var mongoose = require("mongoose");
 
