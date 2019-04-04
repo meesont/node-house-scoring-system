@@ -1,47 +1,88 @@
 <% include ../partials/header %>
 
 <!--
-This template is used to display to the user the 
+This template is used to display to the user the index of all the events that have taken place and that are stored
+inside the database, they are all contained within a container that has a div that is a container with a basic paddingFix
+applied in order to fix the navbar overlap issue from the header,
 -->
 
 <div class='container-fluid paddingFix'>
 
     <h1 class='h1-responsive'>Events</h1>
 
+    <!--
+    There is some inline styling used here, this is CSS flexbox and is a CSS3 web layout model, it is used to
+    create layouts where the rows can contain entities of difference sizes however still maintain a grid-like
+    layout
+    -->
     <div class='row' style='display: flex; flex-wrap: wrap;'>
+
+        <!--
+        The events.forEach function cycles through the events that were provided as a parameter for the res.render
+        and for every event, creates the content which is inside the loop tags.
+
+        For each event, a column is created which uses Bootstrap's layout utilties, sepcifically creating different sized
+        colums for when the browser is in a 'medium' size state and when the browser is in a 'small' size state. Bootstrap's
+        grid system uses a total of 12 units and md-3 uses 3 units per each card, and sm-6 uses 6 units per card, meaning that
+        on a medium or large size browser 4 cards will be displayed per row and on a small browser 2 cards will be displayed per
+        row.
+
+        Inside each column is a card. A card is a content container that functions to provide a base for content and gives options
+        to have a header and footer for the card. In this case, the card is created dynamically with the title being the event name,
+        adn the body containing the date, winner and runner up. There is also a button on each card which links to the show page for
+        the specific event that the card represents. These dynamic parts are achieved by using the EJS tags to get the value of each
+        part of the content for each event.
+
+        EJS requires that the for loop is ended, this is done with the EJS tags containing the '});'.
+        -->
 
         <% events.forEach(function(event){ %>
 
-        <div class='col-md-3 col-sm-6'>
-            <div class='card mb-4'>
-                <div class='card-body text-center event-card'>
+            <div class='col-md-3 col-sm-6'>
+                <div class='card mb-4'>
+                    <div class='card-body text-center event-card'>
 
-                    <h4 class='card-title'><%= event.name %></h4>
+                        <h4 class='card-title'><%= event.name %></h4>
 
-                    <p class='card-text'>Date - <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %></p>
-                    <p class='card-text lead' style='color: gold;'>Winner - <%= event.first.house %></p>
-                    <p class='card-text' style='color: silver;'>Runner Up - <%= event.second.house %></p>
+                        <p class='card-text'>Date - <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %></p>
+                        <p class='card-text lead' style='color: gold;'>Winner - <%= event.first.house %></p>
+                        <p class='card-text' style='color: silver;'>Runner Up - <%= event.second.house %></p>
 
-                    <a class='btn btn-block btn-primary' href='/events/<%= event._id %>'>View More</a>
+                        <a class='btn btn-block btn-primary' href='/events/<%= event._id %>'>View More</a>
+
+                    </div>
 
                 </div>
-
             </div>
-        </div>
 
 
         <% }); %>
     </div>
 
+    <%#
+    Below this an if statment to check if a user is logged in or if it is a guest browsing the page, if the guest is browsing the
+    content within the if statment will not be shown. In this case, it is a button which causes the modal form to appear and allows
+    the addition of new events.
+    %>
+
     <% if (currentUser) { %>
       <div id='newEventBtn'>
           <button id="modalActivate" type="button" class="btn btn-lg btn-primary btn-custom" data-toggle="modal" data-target="#newEventModal">Add new event</button>
-          <!--<a href='/events/new'>New Event</a>-->
       </div>
     <% } %>
 </div>
 
-<!--new event modal-->
+<!--
+Below is the new event modal, modals are 'popup' windows that appear when toggled by a button or anchor tag.
+This specific modal displays a form to the user that appears and shows fields which the user is required to fill in
+to create a new event, the data gained from this form will be submitted via a POST request to the route /events, which
+follows the standards set by RESTful routing.
+
+I chose to use a modal as it allows for the form to be contained within the same page as the events, and prevents the
+need for additional templates being created, upon reflection, it may have been simpler for a user to simply be redirected
+to a new pagr rather than have a popup appear that they may accidently lose data from from clicking outside the box and
+automatically closing the modal.
+-->
 
 <div class='modal fade right' id='newEventModal' tabindex='-1' role='dialog' aria-labeledby='modalTitle'
 aria-hidden='true'>
@@ -51,15 +92,39 @@ aria-hidden='true'>
             <div class='modal-header'>
                 <h5 class='modal-title' id='modalTitle'>Add new event</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span> <!-- Here I am using '&times;' to create a X symbol for the cross-->
                     </button>
             </div>
 
             <div class='modal-body mx-3'>
+                <!--
+                Below is where the form begins, and this form contains the action which sends to the route /events and the method
+                which defines what type of request will be sent from the form, in this case POST.
+                -->
                 <form action='/events' method='POST' id='newEventForm'>
 
+
+                    <!--
+                    Each div uses the class md-form, this is specifically designed to add form items into a modal and is added by
+                    Bootstrap. They are also using mb-5, which is a class to add margin to the bottom side of each div for spacing.
+                    -->
+
                     <div class='md-form mb-5'>
+                        <!--
+                        Each contains a label, the label gives the title of the form input informing users what data to input into
+                        each field.
+                        -->
                         <label for='name'>Event Name</label>
+
+                        <!--
+                        Each input has the required attribute added to it, this prevents the form being submitted without every input
+                        being filled and therefore preventing the creation of events without missing data.
+
+                        I have also used a form of naming that allows the route to process the entire body in one object, by using
+                        event[x], the backend knows to formulate an object from all of these inputs and name that object event. This
+                        is how all of the entities within the event can be accessed by the single req.body.event, rather than having
+                        req.body.name, req.body.date ect.
+                        -->
                         <input type='text' id='name' name='event[name]' class='form-control' required>
 
                     </div>
@@ -74,6 +139,11 @@ aria-hidden='true'>
                     <div class='md-form mb-5'>
                         <label for='winner'>Winner</label>
 
+                        <!--
+                        Some of the inputs are select dropdowns which contain options for each house, the select tag
+                        functions similarly to the input tag howerver a type does not need to be defined and it provides
+                        a more semantic name to the tag.
+                        -->
                         <select class="form-control" name="event[first.house]" id='winner' required>
                             <option value="Wylde">Wylde</option>
                             <option value="Whiteladies">Whiteladies</option>
@@ -148,6 +218,12 @@ aria-hidden='true'>
             </div>
 
             <div class='modal-footer'>
+
+                <!--
+                Within the footer there are 2 buttons, one of which closes the modal and dismisses it, the other is a submit
+                button and is used to submit the modal form and send the POST request.
+                -->
+
                 <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
                 <button type='submit' form='newEventForm' value= 'Submit' class='btn btn-success'>Add new event</button>
             </div>
