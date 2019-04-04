@@ -1,7 +1,38 @@
+<!--
+All files will include the first EJS statment for including the partials.
+Partials are sections of the code that aid with the templating of the file, for example,
+the header template adds all of the HTML head boilerplate and links to external CDN's and Stylesheets.
+
+The footer partial contains all the closint tags for the HTML, body and sources for any external scripts,
+as well as CDN's.
+-->
+
 <% include ../partials/header %>
 
+
+<!--
+The basic error templating is done within this file, each of the errors follows the same format only having
+a different error message and a different page title, they also have different buttons that return the
+user to different paths.
+
+Several bootstrap classes are used within this file, containers are used to set bootstrap margins and setup
+the responsive layout of the file.
+Some typography classes are used, the h1-responsive class is used to ensure that when the page is resized and the
+responsive layout takes over, the h1 styling is consistent and still appears relative to the h1 standard tag. Lead is
+another typography class used, it adds styling to the p tag to show that it is the lead text for the page.
+
+A horizontal rule is created with the class my-3, these classes are used for spacing and can be explained as follows:
+'m' - margin
+'y' - top and bottom margin
+'3' - the amount of margin to add
+
+An anchor tag is then added with 3 bootstrap classes and a custom class on there, this anchor tag links back to the
+homepage as indicated by the href='/home'. The classes used simply style this tag to make it appear as a button rather
+than the standrad blue text that an anchor tag normally creates.
+-->
+
 <div class='container-fluid'>
-    <div class='jumbotron error-jumbo'>
+    <div class='jumbotron'>
         <h1 class='h1-responsive'>Error</h1>
         <p class='lead'>This page could not be found!</p>
         <hr class='my-3'>
