@@ -17,6 +17,9 @@ limitations under the License.
  * @Copyright: Copyright(c) 2018 Thomas Meeson
  */
 
+
+// This is a script written to calculate the total points for each house by pulling from each
+
 const mongoose = require('mongoose')
     House = require('../models/house'),
     Event = require('../models/event');
@@ -126,15 +129,19 @@ function calculatePoints() {
 
                             });
 
-                            house.totalPoints = ottleyPoints;
-                            house.save(err => {
+                            console.log(house.totalPoints);
+                            // house.totalPoints = ottleyPoints;
+                            // console.log(house.totalPoints);
+
+                            House.updateOne({name: 'Ottley'}, {$set: {totalPoints: ottleyPoints}}, function(err, res) {
                                 if(err){
                                     console.log(err);
                                 } else {
-                                    console.log('updated ottley points');
-                                    console.log('new value : ' + house.totalPoints);
+                                    console.log(res);
                                 }
                             });
+
+                            // https://stackoverflow.com/questions/47656515/updateone-on-mongodb-not-working-in-node-js
 
                             break;
                     }
