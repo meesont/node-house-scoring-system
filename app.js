@@ -129,8 +129,7 @@ app.use(function(req, res, next) {
 // ========================
 
 // This simply calls the pointsCalculator() function when the server begins, updating and refreshing the
-// house scores, this is called every 5 minutes minutes
-// setInterval()
+// house scores, this is called every 5 minutes.
 pointsCalculator();
 
 

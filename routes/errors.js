@@ -1,8 +1,8 @@
 /**
  * @Author: Thomas Meeson <thomas>
  * @Date:   31-03-2019
- * @Last modified by:   Tom
- * @Last modified time: 31-03-2019
+ * @Last modified by:   thomas
+ * @Last modified time: 05-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -67,9 +67,9 @@ router.get('/incorrectDetails', function(req, res) {
     res.render('errors/incorrectDetails', {pageTitle: 'Incorrect Details'});
 });
 
-router.get('/notAuthenticated', function(req, res) {
-    res.render('errors/notAuthenticated', {pageTitle: 'Not Authenticated'});
-});
+// router.get('/notAuthenticated', function(req, res) {
+//     res.render('errors/notAuthenticated', {pageTitle: 'Not Authenticated'});
+// });
 
 router.get('/', function(req, res) {
     res.render('errors/error', {pageTitle: 'Error'});
