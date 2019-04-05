@@ -114,7 +114,7 @@ app.use(passport.session());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// This use line tells passport to use the LocalStrategy, which is the name of the passport-local import.
+// This use line tells passport to use the LocalStrategy, and assigns a specific schema to this function.
 passport.use(new LocalStrategy(User.authenticate()));
 
 // This allows access to req.user when we are handling a request in one of the routes files. This must be defined above
@@ -129,7 +129,8 @@ app.use(function(req, res, next) {
 // ========================
 
 // This simply calls the pointsCalculator() function when the server begins, updating and refreshing the
-// house scores
+// house scores, this is called every 5 minutes minutes
+// setInterval()
 pointsCalculator();
 
 
