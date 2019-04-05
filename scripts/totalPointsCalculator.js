@@ -2,7 +2,7 @@
  * @Author: Thomas Meeson <Tom>
  * @Date:   03-04-2019
  * @Last modified by:   thomas
- * @Last modified time: 04-04-2019
+ * @Last modified time: 05-04-2019
  * @License: Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -124,6 +124,16 @@ function calculatePoints() {
                                     ottleyPoints += event.fourth.points;
                                 }
 
+                            });
+
+                            house.totalPoints = ottleyPoints;
+                            house.save(err => {
+                                if(err){
+                                    console.log(err);
+                                } else {
+                                    console.log('updated ottley points');
+                                    console.log('new value : ' + house.totalPoints);
+                                }
                             });
 
                             break;

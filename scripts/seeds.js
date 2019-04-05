@@ -26,9 +26,9 @@ limitations under the License.
 // or rerelease.
 
 const mongoose = require("mongoose"),
-    Event = require("./models/event"),
-    House = require("./models/house"),
-    User = require('./models/user');
+    Event = require("../models/event"),
+    House = require("../models/house"),
+    User = require('../models/user');
 
 // This is an array of objects that all follow the model for a House defined in the house
 // model file, these are the seeding data that will be saved to the database upon seeding
