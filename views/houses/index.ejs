@@ -1,32 +1,92 @@
-<% include ../partials/header %>
+<!--
+@Author: Thomas Meeson <thomas>
+@Date:   05-04-2019
+@Last modified by:   thomas
+@Last modified time: 05-04-2019
+@License: Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+@Copyright: Copyright(c) 2018 Thomas Meeson
+-->
+
+
+<% include ../partials/header %>
+<!--
+This template is used to show each house in an 'accordion' style, this allows each house to have an anchor tag which
+when clicked will expand the card and show more information about the specified house, for example the houseMaster,
+contact email address and the total number of points the house has recieved
+-->
 <div class="container-fluid">
+    <!--
+    Another typography class are display classes, these are used for headers and titles and provide a slighyly more
+    stylish version of header tags/classes.
+    -->
     <h1 class='display-3'>Houses</h1>
 
-    <div class="accordian">
+    <div>
+        <!--
+        A forEach function is used to create a card for every house that is provided by the res.render method, each of these
+        cards populates its own row, and the column is 12 units wide, this is simply to create a card which is the full width
+        of the container that it is embedded within, which is in this case a container-fluid.
+        -->
         <% houses.forEach(function(house, index){ %>
             <div class="row">
                 <div class="col-md-12" style='margin-bottom: 20px;'>
                     <div class="card">
                         <div class="card-header" style='background: <%= house.colour %>;'>
-                            <h3 class='h3-responsive' ><%= house.name %><a class='float-right' href='#<%= house.name %>' data-toggle='collapse' aria-expanded='false' aria-controls='<%= house.name %>'>#<%= index+1 %></a></h3>
+
+                            <!--
+                            Inside the h3 below, there is an anchor tag which functions as the button to toggle the collapsing
+                            content that contains the additional information for each house, this anchor tag is also using a
+                            layout class from Bootstrap called float-right, this simply aligns the anchor tag to the right hand
+                            side of the parent, therefore in this case the anchor tag is assigned to the right of the h3.
+
+                            The href for the anchor tag is set using an EJS statement that gets the name of the house, because each
+                            house name is unique in this case, this works for creating a unique link between the card-body which is collaspsed
+                            and the anchor tag which toggles the collapsed card-body.
+
+                            -->
+
+                            <h3 class='h3-responsive' ><%= house.name %><a class='float-right' href='#<%= house.name %>'
+                                 data-toggle='collapse' aria-expanded='false' aria-controls='<%= house.name %>'>#<%= index+1 %></a></h3>
+                                 <!--
+                                 I use index+1 is because JS is 0 indexed, meaning that position #1 would be #0, adding 1 makes it makes more
+                                 sense as humans use 1 index
+                                 -->
+
                         </div>
+
+                        <!--
+                        Below is the code for producing the card bodies that will be collapsed for the 'accordion' style dropdowns.
+                        They are all given 'unique' id's that are equal to the name of the house, this allows the href of the anchor tag
+                        to easily link to the card body that is correct for the card.
+                        -->
                         <div id="<%= house.name %>" class='collapse'>
+
                             <div class="card-body">
 
                                 <p><strong>Points</strong> - <%= house.totalPoints %></p>
                                 <p><strong>House Master</strong> - <%= house.houseMaster %></p>
-                                <p><strong>Contact</strong> - <a href="mailto:<%= house.email %>?subject=Question for houseMaster"><%= house.email %></a></p>
+                                <p>
+                                    <strong>Contact</strong> - <a href="mailto:<%= house.email %>?subject=Question for houseMaster"><%= house.email %></a>
+                                </p>
 
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         <% }); %>
     </div>
-
-
 </div>
 
 

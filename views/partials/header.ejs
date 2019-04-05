@@ -1,6 +1,28 @@
+<!--
+The header file is a partial, and is designed to be included in every EJS template, it adds the base
+boilerplate for HTML, such as the <!<!DOCTYPE html> tag and the <html> tag. This standard boilerplate
+needs to be included in every template as it is correct practice to have it on every HTML document.
+However, manually typing the entire <head> section for every template created takes time, and is avoided
+by simply using an EJS statement to include the header into every template.
+-->
+
 <!DOCTYPE html>
 <html lang='en' dir='ltr'>
     <head>
+
+        <!--
+        The head of the HTML document contains information that will not be included on the displayed webpage,
+        but effect the backend of the website, for example, website head meta is used by search engines to find
+        appropriate results.
+
+        I have included 4 types of meta within the head for this project, one is the charset, which is required and
+        tells the browser which character encoding the template uses, in this case it is UTF-8. The second piece of
+        meta that is included is the viewport meta, and this is required to ensure when viewing a website on
+        a mobile device it appears correctly and in a manor which is readable, it sets scaling for the webpage.
+
+        The final 2 pices of meta are simply a website description and credit to the author.
+        -->
+
         <!--Meta-->
         <meta charset='utf-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- This meta is required to ensure when viewing a website on
@@ -9,17 +31,25 @@
         <meta name='author' content='Thomas Meeson'>
         <meta name='description' content='A managed scoring system developed for RGSW using Node.js'>
 
+        <!--
+        Inside the title of the page, EJS tags are used to render the pageTitle for the website, this is a parameter that must always be provided
+        when creating the routes as it is used in the header, which is used on all templates.
+        -->
         <title>RGSW Houses - <%= pageTitle %></title>
 
-        <!--Stylesheets -->
+        <!-- Stylesheets -->
+        <!--
+        These two links link to the local stylesheets that I have created, note that the href does not include the public directory, this is
+        because inside the main node file, express has been setup to point to the public directory when trying to serve stylesheets.
+        -->
         <link rel='stylesheet' href='/stylesheets/master.css' type='text/css'>
         <link rel='stylesheet' href='/stylesheets/customBootstrap.css' type='text/css'>
 
-        <!--Bootstrap 4 Content Delivery Network (CDN)-->
+        <!-- Bootstrap 4 Content Delivery Network (CDN) -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-        <!--Fontawsome CDN-->
+        <!-- Fontawsome CDN -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
@@ -27,19 +57,35 @@
 
     </head>
     <body>
+
+        <!--
+        The navbar is included inside the body tag, due to it needing to be rendered within the actual HTML document and
+        being seen by users of the webpage.
+        -->
+
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-rgsgreen"> <!-- Create a navbar with a custom RGSW green shade background -->
             <!--Header -->
-            <a href="/" class="navbar-brand">RGSW</a> <!-- Create a brand title for the navbar TODO: add the rgsw crest -->
+            <a href="/" class="navbar-brand">RGSW</a> <!-- Create a brand title for the navbar -->
             <!--Hamburger -->
+            <!--
+            The button below is used to link to the navbar when the webpage becomes below a certain size.
+            It has Bootstrap classes that are used to create a navbar toggle, however the button is hidden until the webpage
+            shrinks below a certain size.
+            -->
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navCollapseItems" aria-controls="navCollapseItems"
             aria-expanded="false" aria-label="Toggle navigation">
+                <!-- The span below simply creates the 3 bars that show when the navbar is in 'collapsed' mode -->
                 <span class="navbar-toggler-icon"></span>
             </button>
 
 
             <div class="navbar-collapse collapse" id="navCollapseItems">
-            <!--TODO: Add navbar items -->
-                <ul class="navbar-nav mr-auto"> <!-- Mr-Auto aligns the items to right of the navbar -->
+                <ul class="navbar-nav mr-auto"> <!-- Mr-Auto aligns the items to left of the navbar -->
+                    <!--
+                    Each of the li's contained within this nav, uses a ternary operator to check if the item on
+                    the navbar is the currently active page.
+                    IF pageTitle == 'Home' THEN add classes navbar-item AND active, else add just navbar-item
+                    -->
                     <li class="<%= pageTitle == 'Home' ? 'navbar-item active' : 'navbar-item' %>">
                         <a href="/home" class="nav-link">Home</a>
                     </li>
@@ -53,6 +99,12 @@
 
                 <!--Login and Register forms -->
                 <ul class="navbar-nav">
+
+                    <!--
+                    This section of the navbar is aligned to the right hand side and is dedicated to specifically
+                    methods relating to authentication. It also only displays a logout symbol if the user is currently
+                    logged in, otherwise it displays a login and register navbar item.
+                    -->
 
                     <% if (!currentUser) { %>
                         <li class="<%= pageTitle == 'Login' ? 'navbar-item active' : 'navbar-item' %>">
