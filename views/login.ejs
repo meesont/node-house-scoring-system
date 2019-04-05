@@ -1,8 +1,17 @@
 <% include ./partials/header %>
+<!--
+The login form is a simple form within a container that submits a POST request to the route /login
+It contains 2 field's, username and password, and a button that submits the form.
 
+It again uses Bootstrap classes to style certain aspects, for example, a typography class is used to
+centralise the h1, and a form class is used to group the labels and inputs for the form.
+-->
 <div class='container'>
     <h1 class='text-center'>Login</h1>
 
+    <!--
+    This form sends a POST request to the /login route
+    -->
     <form action='/login' method='POST'>
 
         <div class="form-group">

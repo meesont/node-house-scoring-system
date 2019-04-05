@@ -1,8 +1,15 @@
 <% include ./partials/header %>
+
+<!--
+This form follows the same format as the login form, however it contains an extra field
+that takes the loginToken the user provides and submits it, this is then handled by the
+backend code to check if the user has permission to create an account.
+-->
+
 <div class='container'>
     <h1 class='text-center'>Register</h1>
 
-
+    <!-- This form submits a POST request to the /register route -->
     <form action='/register' method='POST'>
 
         <div class="form-group">
@@ -16,11 +23,11 @@
         </div>
 
         <div class="form-group">
-            <label for="signupCode">Login Token (required)</label>
+            <label for="loginToken">Login Token</label>
             <input type='text' placeholder='Login Token' name='loginToken' required class='form-control'>
         </div>
 
-        <input type='submit' class='btn btn-lg btn-success'value='Register'>
+        <input type='submit' class='btn btn-lg btn-success' value='Register'>
 
     </form>
 </div>
